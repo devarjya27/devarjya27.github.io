@@ -1,0 +1,226 @@
+# 网站主页标题
+title: Indrath
+# 网站标题后缀
+suffix: Blogsite
+# 作者名称(会显示在首页文章下面)
+author: Indrath
+# 网站关键字
+keyword: CTF, blog, DFIR, RE, Malware
+# 网站描述
+web_description: random writeups
+# 网站语言
+lang: en-US
+# 网站建站时间
+since_year: 2026
+# 导航名称
+menus_title:
+    home: Main
+    archives: Archives
+    # galleries: /galleries
+    # links: /links
+    about: About me
+
+# 导航
+menus_link:
+    home: /
+    archives: /archives
+    # galleries: /galleries
+    # links: /links
+    about: /about
+
+# 个人信息
+about: 
+    author: Indrath
+    portrait: '/about/avatar.png'
+    description: 'DFIR n RE'
+
+# logo
+logo: /images/headers_icon/logo.webp
+# Icon
+icon:
+    favicon: /images/headers_icon/logo.webp # 网页标签上那个小图标 一定要用本地存储
+    locked: /images/icon/locked.png
+    normal: /images/cards/8BitDeck39.png
+    go_top: /images/icon/go_top.png
+    go_bottom: /images/icon/go_bottom.png
+    search: /images/icon/search.png
+    aside: /images/icon/aside.png
+    copy: /images/icon/copy.png
+    close_code_block: /images/icon/close_code_block.png
+    sticky: /images/icon/sticky.png
+
+# 每个页面的展示的图标和一句话
+headers:
+    home:
+        {
+            message: "some random posts",
+            icon: "/images/hades/Wallpaper_Zagreus01.jpg",
+        }
+    archives:
+        {
+            # 这里会替换掉两个变量{ year 年，number 总数 } 当然也可以不写这两个变量
+            message: "Published number posts in total.",
+            message_month: "Published number posts in month/year.",
+            message_year: "Published number posts in year.",
+            icon: "/images/icon/book.png",
+        }
+    galleries:
+        {
+            message: "Interesting albums (Under construction)",
+            icon: "/images/headers_icon/galleries.svg",
+        }
+    links:
+        {
+            message: "Some interesting websites",
+            icon: "/images/headers_icon/links.svg",
+        }
+    about:
+        {
+            message: "a little about me",
+            icon: "/images/headers_icon/qmark.gif",
+        }
+
+# 网页访问统计
+web_analytics:
+    enable: true  # 需要改为 true
+    busuanzi: true  # 不蒜子访问量统计
+    baidu:  #（替换）百度统计的 Key，参见 https://tongji.baidu.com/sc-web/10000033910/home/site/getjs?siteId=13751376 代码获取中 hm.js? 后边的字符串
+
+# Giscus
+# 配置方法详见 https://giscus.app/
+giscus:
+    enable: false
+    repo: 
+    repo_id: 
+    category: Announcements
+    category_id: 0
+    mapping: title
+    strict: 1
+    reactions-enabled: 1
+    emit_metadata: 0
+    input_position: bottom
+    # loading: lazy
+
+# gitalk 评论
+gitalk:
+    enable: false
+    clientID: # （需要替换）GitHub Application Client ID.
+    clientSecret: #（需要替换）GitHub Application Client Secret.
+    repo: #（需要替换）GitHub repository.
+    owner: #（需要替换）GitHub repository 所有者，可以是个人或者组织。
+    admin: #（需要替换）GitHub repository 的所有者和合作者（对这个 repository 有写权限的用户）。
+
+# 底部显示的图标（github 或者其他）
+bottom_icon:
+    - {
+          # 描述名称
+          name: "github",
+          # 图标
+          icon: "/images/bottom_icon/github.webp",
+          # 跳转链接
+          link: "https://github.com/devarjya27",
+      }
+    - {
+          # 描述名称
+          name: "Instagram",
+          # 图标
+          icon: "/images/bottom_icon/X.svg",
+          # 跳转链接
+          link: "https://www.instagram.com/devarjya27/",
+      }
+    - {
+          # 描述名称
+          name: "LinkedIn",
+          # 图标
+          icon: "/images/bottom_icon/linkedin.svg",
+          # 跳转链接
+          link: "https://www.linkedin.com/in/devarjya-purkayastha/",
+      }
+    - {
+          # 描述名称
+          name: "X",
+          # 图标
+          icon: "/images/bottom_icon/rss.png",
+          # 跳转链接
+          link: "https://x.com/dv_xrt_jyx27",
+      }
+
+# 归档页是否开启侧边栏
+archive_aside: true
+# 标签页是否开启侧边栏
+tag_aside: true
+# 标签页是否开启目录
+archive_toc: true
+# 标签页是否开启目录
+tag_toc: true
+
+# 翻页显示上下文页数，必须是一个自然数
+pagination: 3
+
+# 搜索（如果 hexo-generator-search 启用的话）
+search: true
+
+# 懒加载（如果 hexo-lazyload-image 启用的话）
+lazyload: false
+
+# 字数统计（前端方法，不需要 hexo-wordcount）
+wordcount: true
+
+# 自动将多个空格替换成对应的 &nbsp;
+replaceSpacesWithNbsp: true
+
+# fancybox
+fancybox:
+    enable: true
+    css: css/plugins/fancybox.css
+    js: js/plugins/fancybox.umd.js
+
+# mathjax 和 katex 用于显示数学公式，二者取其一
+mathjax:
+    enable: false
+    js: https://cdn.jsdelivr.net/npm/mathjax@4.0.0-beta.3/tex-mml-chtml.js
+
+katex:
+    enable: true
+    css: /js/plugins/katex/katex.min.css # https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css
+    js: /js/plugins/katex/katex.min.js # https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js
+    auto_render: /js/plugins/katex/auto-render.min.js # https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js
+    copy_tex:
+        enable: true
+        css: /css/plugins/copy-tex.css # https://cdn.bootcdn.net/ajax/libs/KaTeX/0.12.0/contrib/copy-tex.css
+        js: /js/plugins/copy-tex.js # https://cdn.bootcdn.net/ajax/libs/KaTeX/0.12.0/contrib/copy-tex.js
+
+# mermaid chart
+# 可以配合（hexo-filter-mermaid-diagrams）
+mermaid: ## mermaid url https://github.com/knsv/mermaid
+  enable: true  # default true
+  js: https://cdn.jsdelivr.net/npm/mermaid@11.4.0/dist/mermaid.min.js
+  options: # find more api options from https://github.com/knsv/mermaid/blob/master/src/mermaidAPI.js
+    #startOnload: true  // default true
+
+# 默认的 cover (默认缩略图) 在没有填写（这里可以替换（可以是 api 也可以是固定的图））
+default_cover: "/images/hades/Wallpaper_Tartarus.jpg"
+
+# 首页的 top_img (如果设置了此项，首页将使用固定的图片，而不是随机图片)
+home_top_img: "/images/hades/4K_OpeningChamber.jpg"
+
+# 网页的 top_img，每次会从下面的列表中随机选取一张
+random_top_img:
+    - "/images/hades/Wallpaper_Zagreus01.jpg"
+    - "/images/hades/Wallpaper_Tartarus.jpg"
+    - "/images/hades/Wallpaper_Thanatos.png"
+    - "/images/hades/Wallpaper_Hermes.png"
+    - "/images/hades/4K_OpeningChamber.jpg"
+    - "/images/hades/4K_Hades_HouseOfHades.jpg"
+
+# 所有网页中插入的 html 语句
+inject: 
+  head:
+  bottom:
+
+# 如果网站需要填写 ICP 备案信息，可在这里填写
+icp:
+    enable: false
+    icon: 
+    link: 
+    text: 

@@ -1,0 +1,29 @@
+<div class="grouping">
+    <% var currentYear = null; %>
+    <% var currentMonth = null; %>
+    <% keys.forEach(function(item){  %>
+        <% const date = item.split('/'); %>
+        <% if(date[0] != currentYear) { %>
+            <% currentYear = date[0]; %>
+            <% if(is_archive()) { %>
+                <h1 id="_<%= currentYear %>"><a href="#<%= currentYear %>" class="headerlink" title="<%= currentYear %>"></a><a href="<%= theme.menus_link.archives %>/<%= currentYear %>"><%= currentYear %></a></h1>
+                            <% } else { %>
+                                <h1 id="_<%= currentYear %>"><a href="#<%= currentYear %>" class="headerlink" title="<%= currentYear %>"></a><%= currentYear %></h1>
+                            <% } %>
+                        <% } %>
+                        <% if(date[1] != currentMonth) { %>
+                            <% currentMonth = date[1]; %>
+                            <% if(is_archive()){ %>
+                                <h2 id="_<%= currentYear + "-" + currentMonth %>"><a href="#<%= currentYear + "-" + currentMonth %>" class="headerlink" title="<%= currentMonth %>"></a><a href="<%= theme.menus_link.archives %>/<%= currentYear %>/<%= currentMonth.toString().padStart(2, '0') %>"><%= currentMonth %></a></h2>
+                            <% } else { %>
+                                <h2 id="_<%= currentYear + "-" + currentMonth %>"><a href="#<%= currentYear + "-" + currentMonth %>" class="headerlink" title="<%= currentMonth %>"></a><%= currentMonth %></h2>
+                            <% } %>
+        <% } %>
+        <% data[item].map(function(post){  %>
+        <a class="grouping-item" href="<%- config.root %><%- post.path %>">
+            <span><%- post.title %></span>
+            <time><%= post.date.format('MM/DD') %></time>
+        </a>
+        <% }) %>
+    <% }) %>
+</div>

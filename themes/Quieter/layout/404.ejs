@@ -1,0 +1,11 @@
+<%- partial('_partial/sticky-header', {name: '404', bg: false}); %>
+
+<main class="view404">
+	<p class="title">404</p>
+	<p>Page not found (´･ω･`) </p>
+	<div class="view404-btn">
+		<a href="/" class="goindex">Back to Home</a>
+	</div>
+	<img no-lazy class="view404-background" src="<%= page.picture %>" alt="Quieter">
+	<%- partial('widgets/bottom'); %>
+</main>
