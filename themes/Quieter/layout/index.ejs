@@ -12,7 +12,7 @@
 								<h1 class="post-card-top-title"><%- post.title %></h1>
 							</div>
 							<div class="img-container">
-								<img style="<%- post.cover_style || '' %>" src="<%= post.cover ? post.cover : theme.default_cover %>" alt="Cover">
+								<img style="<%- post.cover_style || '' %>" src="<%- url_for(post.cover ? post.cover : theme.default_cover) %>" alt="Cover">
 							</div>
 						</a>
 						<span class="post-card-description">
