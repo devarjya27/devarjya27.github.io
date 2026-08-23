@@ -314,18 +314,18 @@
 <p>Drive Link: <a target="_blank" rel="noopener" href="https://drive.proton.me/urls/ZD2V8HKZCM#fSqFaLtxBubo">https://drive.proton.me/urls/ZD2V8HKZCM#fSqFaLtxBubo</a></p>
 <p>Password: infected</p>
 </blockquote>
-<p><strong>Flag</strong>: <code>nite&#123;CRYPT0BR0Sn4NG3LS4tTH3g4t3&#125;</code></p>
+<p><strong>Flag</strong>: <code>nite{CRYPT0BR0Sn4NG3LS4tTH3g4t3}</code></p>
 <p>We are presented with a 32-bit PE file - <code>seraphs_lance.exe</code></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">file seraphs_lance.exe<br>seraphs_lance.exe: PE32 executable (console) Intel 80386 (stripped to external PDB), for MS Windows, 9 sections<br></code></pre></td></tr></table></figure>
 <p>First things first, let’s look at its decomp to get an idea of things. Going over the strings, we find a ransom note in <code>sub_402A22</code>:</p>
-<img src="/2025/12/15/lament_of_the_seraph/1.png" class="">
+<p><img src="/images/posts/lament_of_the_seraph/1.png" alt=""></p>
 <p>Okay, so we are presented with what looks like a ransomware designed to encrypt crypto wallets. This is a good starting point for us and we can consider this <code>main</code> for now, so let’s start looking at the functions being called in this function:</p>
-<h3 id="sub-401D18"><a href="#sub-401D18" class="headerlink" title="sub_401D18"></a><code>sub_401D18</code></h3><img src="/2025/12/15/lament_of_the_seraph/2.png" class="">
+<h3 id="sub-401D18"><a href="#sub-401D18" class="headerlink" title="sub_401D18"></a><code>sub_401D18</code></h3><p><img src="/images/posts/lament_of_the_seraph/2.png" alt=""></p>
 <p>This is a pretty self-explanatory function. The function returns 1 if the binary is being debugged which in turn results in the binary being exited.</p>
 <h3 id="sub-401E0E"><a href="#sub-401E0E" class="headerlink" title="sub_401E0E"></a><code>sub_401E0E</code></h3><p>Now this function calls a couple of hashed Windows API functions.</p>
-<img src="/2025/12/15/lament_of_the_seraph/3.png" class="">
+<p><img src="/images/posts/lament_of_the_seraph/3.png" alt=""></p>
 <p><code>sub_4019B1</code> parses the PE Header of the loaded DLL, walks the Export Directory, hashes every function name it finds using <code>sub_4014E0</code>, and compares it to the requested hash.</p>
-<img src="/2025/12/15/lament_of_the_seraph/4.png" class="">
+<p><img src="/images/posts/lament_of_the_seraph/4.png" alt=""></p>
 <p>So now we need to look at the hashing algorithm.</p>
 <h3 id="sub-4014E0"><a href="#sub-4014E0" class="headerlink" title="sub_4014E0"></a><code>sub_4014E0</code></h3><p>The hashing algorithm is a modified version of <code>Salsa20</code>. The initial state is a 4x4 matrix that’s filled with the length of the string passed to the function. It then XORs the string with the string length. Then it uses custom “Nothing-Up-My-Sleeve” constants - “SRPH”, “LNCE”, “NITE” and “2025” instead of the standard “expa”, “nd 3”, “2-by”, and “te k”.</p>
 <p>For example, the initial state for <code>VirtualAlloc</code> will look something like this:</p>
@@ -376,41 +376,41 @@
 <p>The algorithm adds the mixed 16-word state back to the original one to break linearity (feed-forward). Then it collapses the 512-bit state by XORing all 16 words together. The final 32-bit XOR result is returned as the hash.</p>
 <p>Now a <a href="resolver.py">python script</a> can be written to resolve the functions with the hashes provided.</p>
 <h3 id="sub-401E0E-continued"><a href="#sub-401E0E-continued" class="headerlink" title="sub_401E0E (continued)"></a><code>sub_401E0E</code> (continued)</h3><p>After resolving the hashes, the function looks something like this:</p>
-<img src="/2025/12/15/lament_of_the_seraph/5.png" class="">
+<p><img src="/images/posts/lament_of_the_seraph/5.png" alt=""></p>
 <p>It is now pretty easy to identify what this function is doing - it calls the Windows API function <code>IsWow64Process</code> via <code>kernel32.dll</code>, this function simply checks if the given process (via <code>GetCurrentProcess</code>) is running under <code>Windows-on-Windows-64-bit</code>.</p>
 <h3 id="What-is-WOW64"><a href="#What-is-WOW64" class="headerlink" title="What is WOW64?"></a>What is WOW64?</h3><p> It is a subsystem in 64-bit versions of Windows that allows 32-bit applications to run seamlessly on a 64-bit operating system. This feature is included by default in most 64-bit Windows operating systems.</p>
 <p>At this point, you might have guessed what this challenge is about. The binary given tries to execute arbitrary 64-bit code from the given 32-bit PE file. How does it do that? We will look at this later. For now let’s move on to the other functions.</p>
-<h3 id="Next-up-sub-416E80"><a href="#Next-up-sub-416E80" class="headerlink" title="Next up - sub_416E80"></a>Next up - <code>sub_416E80</code></h3><img src="/2025/12/15/lament_of_the_seraph/6.png" class="">
+<h3 id="Next-up-sub-416E80"><a href="#Next-up-sub-416E80" class="headerlink" title="Next up - sub_416E80"></a>Next up - <code>sub_416E80</code></h3><p><img src="/images/posts/lament_of_the_seraph/6.png" alt=""></p>
 <p>This function simply registers a vectored exception handler named <code>Handler</code>. Basically, it prepares memory and an exception hook for later use.</p>
 <p>Going back to main, we see <code>dword_40E044</code> which is referenced via <code>Handler</code></p>
-<img src="/2025/12/15/lament_of_the_seraph/7.png" class="">
+<p><img src="/images/posts/lament_of_the_seraph/7.png" alt=""></p>
 <h3 id="Next-up-Handler"><a href="#Next-up-Handler" class="headerlink" title="Next up - Handler"></a>Next up - <code>Handler</code></h3><p>This function is a Vectored Exception Handler (VEH). It intercepts application crashes to hijack the CPU’s execution path. In this big function, only one part is of interest to us.</p>
-<img src="/2025/12/15/lament_of_the_seraph/8.png" class="">
+<p><img src="/images/posts/lament_of_the_seraph/8.png" alt=""></p>
 <p>This block handles memory access errors. The ransomware intentionally crashes at specific valid pointers to trigger this block. This is a control-flow obfuscation technique to hide the call to the malicious payload (<code>sub_40286D</code>).</p>
 <p>If the Exception Address happens to be <code>dword_40E044</code> then <code>sub_40286D</code> gets called. Here <code>sub_40286D</code> is the actual malicious stuff the binary tries to do.</p>
 <h3 id="Next-up-sub-40286D"><a href="#Next-up-sub-40286D" class="headerlink" title="Next up - sub_40286D"></a>Next up - <code>sub_40286D</code></h3><p>We can see that this function calls two functions of interest - <code>sub_401FD1</code> and <code>sub_401E9D</code>.</p>
-<img src="/2025/12/15/lament_of_the_seraph/9.png" class="">
+<p><img src="/images/posts/lament_of_the_seraph/9.png" alt=""></p>
 <h3 id="sub-401FD1"><a href="#sub-401FD1" class="headerlink" title="sub_401FD1"></a><code>sub_401FD1</code></h3><p>The function will look something like this after resolving the hashes:</p>
-<img src="/2025/12/15/lament_of_the_seraph/10.png" class="">
+<p><img src="/images/posts/lament_of_the_seraph/10.png" alt=""></p>
 <p>Here <code>sub_401C19</code> gets the <code>USERPROFILE</code> path via PEB walking, which then builds the path to <code>\\AppData\\Roaming\\Electrum\\recent_servers</code>. The function then parses this file and looks for a string between double quotes whose md5 hash matches <code>5fc44255053d10f73c65104fa689843f</code>.</p>
 <p>Now, it is impossible to get the string from the md5 hash alone, this is where the description comes in which hints at a <code>public server</code>. The intent behind this part is for the player to research on well known public <code>Electrum</code> servers and <code>Electrum</code> as a whole. The required string is <code>electrum.blockstream.info</code> which can be found in <a target="_blank" rel="noopener" href="https://github.com/spesmilo/electrum/blob/0eefcbae9cb19ff9ece8cd07dc97f8835b690b83/electrum/chains/mainnet/servers.json">https://github.com/spesmilo/electrum/blob/0eefcbae9cb19ff9ece8cd07dc97f8835b690b83/electrum/chains/mainnet/servers.json</a> or <a target="_blank" rel="noopener" href="https://1209k.com/bitcoin-eye/ele.php">https://1209k.com/bitcoin-eye/ele.php</a></p>
 <p>Upon passing the md5 check, the string is returned via <code>Destination</code>.</p>
 <h3 id="Next-up-sub-401E9D"><a href="#Next-up-sub-401E9D" class="headerlink" title="Next up - sub_401E9D"></a>Next up - <code>sub_401E9D</code></h3><p>The string stored in <code>Destination</code> is now passed to this function. We additionally see that <code>VirtualProtect</code> is used in this function, now we can make an educated guess that some shellcode is being executed in this function.</p>
-<img src="/2025/12/15/lament_of_the_seraph/11.png" class="">
+<p><img src="/images/posts/lament_of_the_seraph/11.png" alt=""></p>
 <p>Our shellcode is stored at <code>unk_40A020</code>.</p>
-<img src="/2025/12/15/lament_of_the_seraph/12.png" class="">
+<p><img src="/images/posts/lament_of_the_seraph/12.png" alt=""></p>
 <p>Before we analyse our shellcode, lets quickly look at <code>sub_402531</code>.</p>
 <h3 id="sub-402531"><a href="#sub-402531" class="headerlink" title="sub_402531"></a><code>sub_402531</code></h3><p>This function gets files under <code>\\AppData\\Roaming\\Electrum\\wallets</code> and AES-256-CBC encrypts them using <code>openssl</code>. The encrypted file is then saved with the <code>.seraph</code> extension. The IV is hardcoded so  finding the key should be our next logical step. The function takes in the hex of the key and the key is the string returned by <code>sub_401E9D</code> so we can make an educated guess that our shellcode returns the key after some transformations.</p>
 <h2 id="Shellcode-Analysis"><a href="#Shellcode-Analysis" class="headerlink" title="Shellcode Analysis"></a>Shellcode Analysis</h2><p>Lets look at the disassembly of the shellcode stored in <code>unk_40A020</code>,</p>
-<img src="/2025/12/15/lament_of_the_seraph/13.png" class="">
+<p><img src="/images/posts/lament_of_the_seraph/13.png" alt=""></p>
 <p>Interesting, a <code>retf</code> instruction. This part of the challenge requires further research by the player on the <code>retf</code> or <code>far return</code> instruction and the <code>cs</code> (code segment) register.</p>
 <p>When executing a <code>far return</code> (<code>retf</code>), the processor pops the return instruction pointer (IP) from the top of the stack into the <code>ip</code> register, and then pops the segment selector (CS) from the top of the stack into the <code>cs</code> register, effecting the mode switch.</p>
 <p>From our disassembly, we can see that the <code>cs</code> register holds the value <code>0x33</code> (after the arithmetic operations).</p>
 <h3 id="The-Code-Segment-Register"><a href="#The-Code-Segment-Register" class="headerlink" title="The Code Segment Register"></a>The Code Segment Register</h3><p>In x86 architecture, the CS register holds the segment selector for the code segment. It can have two values - <code>0x23</code> signifying <code>x86</code> instructions, and <code>0x33</code> signifying <code>x64</code> instructions. This challenge utilizes this property of the <code>cs</code> register to execute arbitrary <code>64-bit</code> code in the given <code>32-bit</code> executable. This technique is known as the <strong><code>Heaven&#39;s Gate</code></strong> technique.</p>
 <h2 id="Shellcode-Analysis-Continued"><a href="#Shellcode-Analysis-Continued" class="headerlink" title="Shellcode Analysis (Continued)"></a>Shellcode Analysis (Continued)</h2><p>Now lets look at the hex view of the shellcode:</p>
-<img src="/2025/12/15/lament_of_the_seraph/14.png" class="">
+<p><img src="/images/posts/lament_of_the_seraph/14.png" alt=""></p>
 <p>Here we see two <code>CB</code> or <code>retf</code> instructions. Lets look at the second <code>far return</code> now,</p>
-<img src="/2025/12/15/lament_of_the_seraph/15.png" class="">
+<p><img src="/images/posts/lament_of_the_seraph/15.png" alt=""></p>
 <p>Well, now the value of the <code>cs</code> register is <code>0x23</code>, as expected the context now switches from <code>64bit</code> to <code>32bit</code>, which means the code between the two <code>far return</code>s is 64bit instructions embedded in a 32bit executable.</p>
 <p>To summarize, there is 64-bit code getting executed in the given 32-bit executable. This technique, although pretty simple, evades the eyes of multiple antiviruses and is a malicious technique.</p>
 <p>So now how to go ahead? The simplest way is to extract the shellcode, save it in another file and open it in 64-bit mode.</p>
@@ -422,7 +422,7 @@
 <p>after which the registers get popped and the cs register gets modified to return back to 32 bit mode:</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs asm">done:<br>    pop rdi                   ; Restore saved registers<br>    pop rsi<br>    pop rbx<br><br>    push 2<br>    pop rax<br>    shl eax, 4<br>    add al, 3<br>    push rax<br>    push 0<br>    retfq                     ; far return to switch back to 32 bit mode<br></code></pre></td></tr></table></figure>
 <p>Right, so the algorithm is our classic repeating-key XOR cipher. Below is a comparison between the disassemblies in 32-bit and 64-bit mode respectively:</p>
-<img src="/2025/12/15/lament_of_the_seraph/16.png" class="">
+<p><img src="/images/posts/lament_of_the_seraph/16.png" alt=""></p>
 <p>Now, we know the xor key and the encrypted bytes, that’s the only two things required to get the flag:</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">data = <span class="hljs-built_in">bytes</span>.fromhex(<span class="hljs-string">&quot;0B 05 11 06 0F 31 27 34 7E 36 5C 2D 31 5B 20 1A 46 2B 26 5E 62 3A 5A 12 3B 2D 5F 02 57 00 41 08&quot;</span>)<br>key = <span class="hljs-string">&quot;electrum.blockstream.info&quot;</span><br>result = <span class="hljs-built_in">bytes</span>([data[i] ^ <span class="hljs-built_in">ord</span>(key[i % <span class="hljs-built_in">len</span>(key)]) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(data))])<br><span class="hljs-built_in">print</span>(result.decode())<br><span class="hljs-comment"># nite&#123;CRYPT0BR0Sn4NG3LS4tTH3g4t3&#125;</span><br></code></pre></td></tr></table></figure>
 
@@ -477,12 +477,12 @@
         <div class="post-paging">     
             <div class="post-paging-last">
                 
-                    <a href="/2025/12/15/ophelias_truth/">
-                        <- niteCTF 2025 - Ophelia's Truth
-                    </a>
-                
             </div>
             <div class="post-paging-next">
+                
+                    <a href="/2025/12/15/ophelias_truth/">
+                        niteCTF 2025 - Ophelia's Truth ->
+                    </a>
                 
             </div>
         </div>

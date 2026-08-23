@@ -162,7 +162,7 @@ To get the key, one can take advantage of a peculiar thing the binary does. You 
 
 First the DES key gets stored via `sub_14008B4B0` and then later the AES key gets stored in the same path via `sub_14008A6F0`. So if we set up a breakpoint after `sub_14008B4B0` and run it in a VM, we can get the key.
 
-{% asset_img "1.png" %}
+![](/images/posts/ophelias_truth/1.png)
 
 Now you can run it and look for files of size 8 bytes (as we know thats the size of the DES key)
 ```bash

@@ -29,13 +29,13 @@ seraphs_lance.exe: PE32 executable (console) Intel 80386 (stripped to external P
 
 First things first, let's look at its decomp to get an idea of things. Going over the strings, we find a ransom note in `sub_402A22`:
 
-{% asset_img "1.png" %}
+![](/images/posts/lament_of_the_seraph/1.png)
 
 Okay, so we are presented with what looks like a ransomware designed to encrypt crypto wallets. This is a good starting point for us and we can consider this `main` for now, so let's start looking at the functions being called in this function:
 
 ### `sub_401D18`
 
-{% asset_img "2.png" %}
+![](/images/posts/lament_of_the_seraph/2.png)
 
 This is a pretty self-explanatory function. The function returns 1 if the binary is being debugged which in turn results in the binary being exited.
 
@@ -43,11 +43,11 @@ This is a pretty self-explanatory function. The function returns 1 if the binary
 
 Now this function calls a couple of hashed Windows API functions.
 
-{% asset_img "3.png" %}
+![](/images/posts/lament_of_the_seraph/3.png)
 
 `sub_4019B1` parses the PE Header of the loaded DLL, walks the Export Directory, hashes every function name it finds using `sub_4014E0`, and compares it to the requested hash.
 
-{% asset_img "4.png" %}
+![](/images/posts/lament_of_the_seraph/4.png)
 
 So now we need to look at the hashing algorithm.
 
@@ -76,7 +76,7 @@ Now a [python script](resolver.py) can be written to resolve the functions with 
 
 After resolving the hashes, the function looks something like this:
 
-{% asset_img "5.png" %}
+![](/images/posts/lament_of_the_seraph/5.png)
 
 It is now pretty easy to identify what this function is doing - it calls the Windows API function `IsWow64Process` via `kernel32.dll`, this function simply checks if the given process (via `GetCurrentProcess`) is running under `Windows-on-Windows-64-bit`.
 
@@ -87,20 +87,20 @@ At this point, you might have guessed what this challenge is about. The binary g
 
 ### Next up - `sub_416E80`
 
-{% asset_img "6.png" %}
+![](/images/posts/lament_of_the_seraph/6.png)
 
 This function simply registers a vectored exception handler named `Handler`. Basically, it prepares memory and an exception hook for later use.
 
 
 Going back to main, we see `dword_40E044` which is referenced via `Handler`
 
-{% asset_img "7.png" %}
+![](/images/posts/lament_of_the_seraph/7.png)
 
 ### Next up - `Handler`
 
 This function is a Vectored Exception Handler (VEH). It intercepts application crashes to hijack the CPU's execution path. In this big function, only one part is of interest to us.
 
-{% asset_img "8.png" %}
+![](/images/posts/lament_of_the_seraph/8.png)
 
 This block handles memory access errors. The ransomware intentionally crashes at specific valid pointers to trigger this block. This is a control-flow obfuscation technique to hide the call to the malicious payload (`sub_40286D`).
 
@@ -111,13 +111,13 @@ If the Exception Address happens to be `dword_40E044` then `sub_40286D` gets cal
 
 We can see that this function calls two functions of interest - `sub_401FD1` and `sub_401E9D`.
 
-{% asset_img "9.png" %}
+![](/images/posts/lament_of_the_seraph/9.png)
 
 ### `sub_401FD1`
 
 The function will look something like this after resolving the hashes:
 
-{% asset_img "10.png" %}
+![](/images/posts/lament_of_the_seraph/10.png)
 
 Here `sub_401C19` gets the `USERPROFILE` path via PEB walking, which then builds the path to `\\AppData\\Roaming\\Electrum\\recent_servers`. The function then parses this file and looks for a string between double quotes whose md5 hash matches `5fc44255053d10f73c65104fa689843f`.
 
@@ -129,11 +129,11 @@ Upon passing the md5 check, the string is returned via `Destination`.
 
 The string stored in `Destination` is now passed to this function. We additionally see that `VirtualProtect` is used in this function, now we can make an educated guess that some shellcode is being executed in this function.
 
-{% asset_img "11.png" %}
+![](/images/posts/lament_of_the_seraph/11.png)
 
 Our shellcode is stored at `unk_40A020`.
 
-{% asset_img "12.png" %}
+![](/images/posts/lament_of_the_seraph/12.png)
 
 Before we analyse our shellcode, lets quickly look at `sub_402531`.
 
@@ -146,7 +146,7 @@ This function gets files under `\\AppData\\Roaming\\Electrum\\wallets` and AES-2
 
 Lets look at the disassembly of the shellcode stored in `unk_40A020`,
 
-{% asset_img "13.png" %}
+![](/images/posts/lament_of_the_seraph/13.png)
 
 Interesting, a `retf` instruction. This part of the challenge requires further research by the player on the `retf` or `far return` instruction and the `cs` (code segment) register.
 
@@ -162,11 +162,11 @@ In x86 architecture, the CS register holds the segment selector for the code seg
 
 Now lets look at the hex view of the shellcode:
 
-{% asset_img "14.png" %}
+![](/images/posts/lament_of_the_seraph/14.png)
 
 Here we see two `CB` or `retf` instructions. Lets look at the second `far return` now,
 
-{% asset_img "15.png" %}
+![](/images/posts/lament_of_the_seraph/15.png)
 
 Well, now the value of the `cs` register is `0x23`, as expected the context now switches from `64bit` to `32bit`, which means the code between the two `far return`s is 64bit instructions embedded in a 32bit executable.
 
@@ -270,7 +270,7 @@ done:
 
 Right, so the algorithm is our classic repeating-key XOR cipher. Below is a comparison between the disassemblies in 32-bit and 64-bit mode respectively:
 
-{% asset_img "16.png" %}
+![](/images/posts/lament_of_the_seraph/16.png)
 
 Now, we know the xor key and the encrypted bytes, that's the only two things required to get the flag:
 
