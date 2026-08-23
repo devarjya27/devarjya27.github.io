@@ -7,7 +7,7 @@
 			<div class="post-card">
 				<% page.posts.each(function (post,i) { %>
 					<div class="post-card-display">
-						<a class="post-card-display-item" href="<%- url_for(post.path) %>">
+						<a class="post-card-display-item" href="<%- config.root %><%- post.path %>">
 							<div class="post-card-top">
 								<h1 class="post-card-top-title"><%- post.title %></h1>
 							</div>
