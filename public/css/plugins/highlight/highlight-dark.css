@@ -1,0 +1,70 @@
+/*
+Gruvbox Material Soft Color Scheme
+https://github.com/sainnhe/gruvbox-material
+*/
+[data-theme='dark'] pre code {
+  color: #e2cca9;
+  background: #171717;
+}
+[data-theme='dark'] .hljs {
+  color: #e2cca9;
+  background: #171717;
+}
+[data-theme='dark'] .hljs-comment,
+[data-theme='dark'] .hljs-quote {
+  color: #928374;
+  font-style: italic;
+}
+[data-theme='dark'] .hljs-doctag,
+[data-theme='dark'] .hljs-keyword,
+[data-theme='dark'] .hljs-formula,
+[data-theme='dark'] .hljs-literal {
+  font-weight: bold;
+  color: #ea6962;
+}
+[data-theme='dark'] .hljs-section,
+[data-theme='dark'] .hljs-name,
+[data-theme='dark'] .hljs-selector-tag,
+[data-theme='dark'] .hljs-deletion,
+[data-theme='dark'] .hljs-subst {
+  color: #b8bb26;
+}
+[data-theme='dark'] .hljs-string,
+[data-theme='dark'] .hljs-regexp,
+[data-theme='dark'] .hljs-addition,
+[data-theme='dark'] .hljs-attribute,
+[data-theme='dark'] .hljs-meta-string {
+  color: #b8bb26;
+}
+[data-theme='dark'] .hljs-built_in,
+[data-theme='dark'] .hljs-class .hljs-title {
+  color: #e68c75;
+}
+[data-theme='dark'] .hljs-attr,
+[data-theme='dark'] .hljs-variable,
+[data-theme='dark'] .hljs-template-variable,
+[data-theme='dark'] .hljs-selector-class,
+[data-theme='dark'] .hljs-selector-attr,
+[data-theme='dark'] .hljs-selector-pseudo {
+  color: #d3869b;
+}
+[data-theme='dark'] .hljs-number {
+  color: #f2b86d;
+}
+[data-theme='dark'] .hljs-symbol,
+[data-theme='dark'] .hljs-bullet,
+[data-theme='dark'] .hljs-link,
+[data-theme='dark'] .hljs-meta,
+[data-theme='dark'] .hljs-selector-id,
+[data-theme='dark'] .hljs-title {
+  color: #ea6962;
+}
+[data-theme='dark'] .hljs-emphasis {
+  font-style: italic;
+}
+[data-theme='dark'] .hljs-strong {
+  font-weight: bold;
+}
+[data-theme='dark'] .hljs-link {
+  text-decoration: underline;
+}

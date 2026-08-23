@@ -1,0 +1,102 @@
+/*
+Gruvbox Material Soft Color Scheme
+https://github.com/sainnhe/gruvbox-material
+*/
+.hljs-comment,
+.hljs-quote,
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula,
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst,
+.hljs-literal,
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta-string,
+.hljs-built_in,
+.hljs-class .hljs-title,
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  transition: color 0.5s ease-in-out;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+}
+pre code {
+  width: 0px;
+  line-height: 1.5em;
+  display: block;
+  transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
+}
+[data-theme='light'] pre code {
+  color: #654735;
+  background: #f9f5d9;
+}
+[data-theme='light'] .hljs {
+  color: #654735;
+  background: #f9f5d9;
+}
+[data-theme='light'] .hljs-comment,
+[data-theme='light'] .hljs-quote {
+  color: #8f938f;
+  font-style: italic;
+}
+[data-theme='light'] .hljs-keyword,
+[data-theme='light'] .hljs-selector-tag,
+[data-theme='light'] .hljs-literal {
+  color: #d65d0e;
+  font-weight: bold;
+}
+[data-theme='light'] .hljs-string,
+[data-theme='light'] .hljs-meta-string,
+[data-theme='light'] .hljs-attribute {
+  color: #8b8b1b;
+}
+[data-theme='light'] .hljs-number,
+[data-theme='light'] .hljs-builtin-number {
+  color: #aa8557;
+}
+[data-theme='light'] .hljs-built_in,
+[data-theme='light'] .hljs-title,
+[data-theme='light'] .hljs-section,
+[data-theme='light'] .hljs-name {
+  color: #aa8557;
+}
+[data-theme='light'] .hljs-variable,
+[data-theme='light'] .hljs-type {
+  color: #8d6d5c;
+}
+[data-theme='light'] .hljs-attr,
+[data-theme='light'] .hljs-symbol {
+  color: #aa8557;
+}
+[data-theme='light'] .hljs-addition {
+  color: #558b2f;
+  background-color: #f2f0e5;
+}
+[data-theme='light'] .hljs-deletion {
+  color: #d65d0e;
+  background-color: #f2f0e5;
+}
+[data-theme='light'] .hljs-emphasis {
+  font-style: italic;
+}
+[data-theme='light'] .hljs-strong {
+  font-weight: bold;
+}

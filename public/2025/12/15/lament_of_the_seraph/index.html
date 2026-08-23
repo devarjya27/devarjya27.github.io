@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang=en-US data-theme="dark">
+	
+<script src="/js/plugins/toggleTheme.js"></script>
+
+	<head>
+		
+<title>niteCTF 2025 - Lament of the Seraph | Blogsite</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/images/headers_icon/logo.webp">
+<link href="/css/plugins/print.css" media="print" rel="stylesheet" />
+
+<link rel="stylesheet" href="/css/index.css">
+
+
+    <meta name="keywords" content="CTF, blog, DFIR, RE, Malware">
+    <meta name="description" content="random writeups">
+
+
+
+<script src="/js/plugins/jquery.min.js"></script>
+
+
+<script src="/js/plugins/hljs.min.js"></script>
+
+
+<script src="/js/plugins/init.js"></script>
+
+
+<script src="/js/plugins/hide.js"></script>
+
+
+<script src="/js/plugins/tabs.js"></script>
+
+
+
+    
+
+
+
+
+
+
+
+    
+
+	<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/rss.xml" title="Indrath" type="application/rss+xml">
+</head>
+
+	<body>
+		<header class="sticky-header">
+	<nav>
+		<div class="nav-left">
+			<a href="/" class="logo">
+				<img no-lazy src="/images/headers_icon/logo.webp" alt="Quieter">
+			</a>
+			<ul class="breadcrumb" id="breadcrumb"></ul>
+		</div>
+		<div class="nav-right">
+			<ul>
+				
+					<li>
+						<a href="/">
+						  Main
+						</a>
+					</li>
+				
+					<li>
+						<a href="/archives">
+						  Archives
+						</a>
+					</li>
+				
+					<li>
+						<a href="/about">
+						  About me
+						</a>
+					</li>
+								  
+			</ul>
+		</div>
+		<div class="nav-right-close">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+				<path fill="none" d="M0 0h24v24H0z" />
+				<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+			</svg>
+		</div>
+
+		<div class="sidebar">
+    <div class="topo">
+        <p>Blogsite</p>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">
+                Main
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives">
+                Archives
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about">
+                About me
+            </a>
+        </li>
+        
+    </ul>
+    <div class="sidebar-footer">
+        
+        <a target="_blank" rel="noopener" href="https://github.com/devarjya27">
+            <img no-lazy src="/images/bottom_icon/github.webp" alt="Quieter">
+        </a>
+        
+        <a target="_blank" rel="noopener" href="https://www.instagram.com/devarjya27/">
+            <img no-lazy src="/images/bottom_icon/instagram.svg" alt="Quieter">
+        </a>
+        
+        <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/devarjya-purkayastha/">
+            <img no-lazy src="/images/bottom_icon/linkedin.svg" alt="Quieter">
+        </a>
+        
+        <a target="_blank" rel="noopener" href="https://x.com/dv_xrt_jyx27">
+            <img no-lazy src="/images/bottom_icon/rss.png" alt="Quieter">
+        </a>
+        
+    </div>
+</div>
+<div class='shelter'>
+    <script>
+        $(function() {
+            $('.nav-right-close > svg').click(function() {
+                $('.sidebar').animate({
+                    right: "0"
+                }, 500);
+                $('.shelter').fadeIn("slow");
+            
+                var element = $('.topo');
+                element.addClass('custom-style');
+            
+                var links = null;
+                if ("") {
+                    links = "".split(',');
+                } else {
+                    links = "/images/hades/Wallpaper_Zagreus01.jpg,/images/hades/Wallpaper_Tartarus.jpg,/images/hades/Wallpaper_Thanatos.png,/images/hades/Wallpaper_Hermes.png,/images/hades/4K_OpeningChamber.jpg,/images/hades/4K_Hades_HouseOfHades.jpg".split(',');
+                }
+            
+                var randomLink = typeof pickWallpaper === 'function' ? pickWallpaper(links, 'quieter:sidebar-wallpaper') : links[Math.floor(Math.random() * links.length)];
+                element.css('background-image', "url('" + randomLink + "')");
+            });
+          
+            $('.shelter').click(function(e) {
+                $('.sidebar').animate({
+                    right: "-100%"
+                }, 500);
+                $('.shelter').fadeOut("slow");
+            });
+        });      
+    </script>
+</div>
+
+	</nav>
+
+	
+		<div class="header-background"></div>
+	
+
+	<script>
+		const name = 'post';
+		const ul = document.querySelectorAll('.nav-right ul')[0];
+		const lis = ul.querySelectorAll('li');
+
+		if (name == 'home') {
+			lis[0].classList.add('select');
+		} else {
+			for (let i = 0; i < lis.length; i++) {
+				const li = lis[i];
+				const a = li.querySelector('a');
+				if (name === a.href.split('/')[3]) {
+					li.classList.add('select');
+				}
+			}
+		}
+	</script>
+	
+	<script>
+		var element = document.querySelector('.header-background');
+		if(element) {
+			element.classList.add('custom-style');
+			var links = null;
+			if (name === 'home' && "/images/hades/4K_OpeningChamber.jpg") {
+				links = ["/images/hades/4K_OpeningChamber.jpg"];
+			} else if("")
+			{
+				links = "".split(',');
+			} else
+			{
+				links = "/images/hades/Wallpaper_Zagreus01.jpg,/images/hades/Wallpaper_Tartarus.jpg,/images/hades/Wallpaper_Thanatos.png,/images/hades/Wallpaper_Hermes.png,/images/hades/4K_OpeningChamber.jpg,/images/hades/4K_Hades_HouseOfHades.jpg".split(',');
+			}
+			var randomLink = typeof pickWallpaper === 'function' ? pickWallpaper(links, 'quieter:header-wallpaper') : links[Math.floor(Math.random() * links.length)];
+			element.style.backgroundImage = "url('" + randomLink + "')";
+		}
+	</script>
+
+	
+<script src="/js/plugins/breadcrumb.js"></script>
+
+	<script>
+		var menus_title = [];
+		
+			menus_title.push({home: 'Main'});
+		
+			menus_title.push({archives: 'Archives'});
+		
+			menus_title.push({about: 'About me'});
+		
+		
+			
+		
+	</script>
+</header>
+
+
+<div class="main-wrapper">
+    <main class="post">
+        <header class="main-header">
+	
+		
+			
+				
+<link rel="stylesheet" href="/css/plugins/fancybox.css">
+
+				
+<script src="/js/plugins/fancybox.umd.js"></script>
+
+				
+<script src="/js/plugins/fancybox.js"></script>
+
+			
+			<div class="post-header-background-content">
+				<ul class="post-header-tag">
+					
+				</ul>
+				
+				<h1>niteCTF 2025 - Lament of the Seraph</h1>
+		
+				
+		
+				<div class="post-header-info">
+					<svg t="1604839279282" class="icon" viewBox="0 0 1024 1024" version="1.1"
+					xmlns="http://www.w3.org/2000/svg" p-id="2901" width="20" height="20">
+						<path
+							d="M513 956.3c-247.7 0-448-200.3-448-448S265.3 66.2 513 66.2s448 200.3 448 448-200.3 442.1-448 442.1z m0-830.9c-212.2 0-388.8 170.7-388.8 388.8C124.2 726.3 294.9 903 513 903c212.2 0 388.8-170.7 388.8-388.8S725.2 125.4 513 125.4z m0 430.2c-94.2 0-170.7-76.5-170.7-170.7S418.8 207.8 513 207.8s170.7 76.5 170.7 170.7S607.2 555.6 513 555.6z m0-289.1c-64.6 0-112 52.8-112 112s47.4 117.9 112 117.9 112-52.8 112-112-47.4-117.9-112-117.9z m0 689.8c-135.7 0-259-58.7-341.9-158.9l-11.8-17.8 11.8-17.8c76.5-117.9 206.2-188.5 347.8-188.5 135.7 0 265 64.6 341.9 182.6l11.8 17.8-11.8 17.8C778 897.1 648.7 956.3 513 956.3zM230.3 773.2C300.9 849.7 406.9 897 513 897c112 0 218.1-47.4 288.6-129.8-70.5-88.2-170.7-135.6-282.7-135.6s-218.1 53.3-288.6 141.6z"
+							p-id="2902" fill="#ffffff"></path>
+					</svg>
+					<div class="post-header-info-author">
+						<a href="/about">Indrath</a>
+					</div>
+					
+						<div class="post-header-info-categories">
+							
+						</div>
+					
+					<time>2025/12/15</time>
+				</div>
+		
+				
+					<div class="post-header-stat">
+						<svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+						viewBox="0 0 200 200" enable-background="new 0 0 200 200" xml:space="preserve" width="20" height="20">
+							<path fill="#FFFFFF" d="M187.2,165.6c0,2.6-2.1,4.7-4.7,4.7H17.5c-2.6,0-4.7-2.1-4.7-4.7s2.1-4.7,4.7-4.7h165.1
+								C185.2,160.9,187.2,163,187.2,165.6z"/>
+							<path fill="#FFFFFF" d="M17.5,29.7c2.6,0,4.7,2.1,4.7,4.7v131.2c0,2.6-2.1,4.7-4.7,4.7s-4.7-2.1-4.7-4.7V34.4
+								C12.8,31.8,14.9,29.7,17.5,29.7z M77.9,91.5c1.8,1.8,1.8,4.8,0,6.6l-39.8,39.8c-1.9,1.8-4.9,1.7-6.6-0.2c-1.7-1.8-1.7-4.6,0-6.4
+								l39.8-39.8C73.1,89.6,76,89.6,77.9,91.5z M169.9,70.2c1.6,2.1,1.1,5-0.9,6.5c0,0,0,0,0,0l-64.2,48.2c-2.1,1.5-5,1.1-6.6-0.9
+								c-1.6-2.1-1.1-5,0.9-6.5c0,0,0,0,0,0l64.2-48.2C165.4,67.7,168.3,68.1,169.9,70.2L169.9,70.2z"/>
+							<path fill="#FFFFFF" d="M104.6,124.5c-1.8,1.8-4.8,1.8-6.6,0L71.6,98.1c-1.8-1.8-1.8-4.8,0-6.6c1.8-1.8,4.8-1.8,6.6,0l26.3,26.3
+								C106.4,119.6,106.4,122.6,104.6,124.5C104.6,124.4,104.6,124.4,104.6,124.5z"/>
+						</svg>
+		
+						
+							
+<script src="/js/plugins/wordCount.js"></script>
+
+							<p class="post-count">Word Count: ---</p>
+						
+		
+						
+							<p id="busuanzi_container_page_pv" style='display:none;'>Reading count: <span id="busuanzi_value_page_pv"></span></p>
+						
+					</div>
+				
+			</div>
+		
+	
+</header>
+
+        <div class="post-content article-container">
+            <article class="post-content-info">
+                <h1 id="Lament-of-the-Seraph-Solution"><a href="#Lament-of-the-Seraph-Solution" class="headerlink" title="Lament of the Seraph Solution"></a>Lament of the Seraph Solution</h1><blockquote>
+<p>Our friendly neighbourhood crypto bro is left lamenting after a ransomware attack wiped his fortune and locked his wallets. What he thought was a gateway to wealth was, in truth, a trap. Among his many missteps, some say he once placed his trust in a public server. Help him undo his folly and seize the flag in the process.</p>
+<p><code>Note: This is a live malware, please exercise caution.</code></p>
+<p>Drive Link: <a target="_blank" rel="noopener" href="https://drive.proton.me/urls/ZD2V8HKZCM#fSqFaLtxBubo">https://drive.proton.me/urls/ZD2V8HKZCM#fSqFaLtxBubo</a></p>
+<p>Password: infected</p>
+</blockquote>
+<p><strong>Flag</strong>: <code>nite&#123;CRYPT0BR0Sn4NG3LS4tTH3g4t3&#125;</code></p>
+<p>We are presented with a 32-bit PE file - <code>seraphs_lance.exe</code></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs plaintext">file seraphs_lance.exe<br>seraphs_lance.exe: PE32 executable (console) Intel 80386 (stripped to external PDB), for MS Windows, 9 sections<br></code></pre></td></tr></table></figure>
+<p>First things first, let’s look at its decomp to get an idea of things. Going over the strings, we find a ransom note in <code>sub_402A22</code>:</p>
+<img src="/2025/12/15/lament_of_the_seraph/1.png" class="">
+<p>Okay, so we are presented with what looks like a ransomware designed to encrypt crypto wallets. This is a good starting point for us and we can consider this <code>main</code> for now, so let’s start looking at the functions being called in this function:</p>
+<h3 id="sub-401D18"><a href="#sub-401D18" class="headerlink" title="sub_401D18"></a><code>sub_401D18</code></h3><img src="/2025/12/15/lament_of_the_seraph/2.png" class="">
+<p>This is a pretty self-explanatory function. The function returns 1 if the binary is being debugged which in turn results in the binary being exited.</p>
+<h3 id="sub-401E0E"><a href="#sub-401E0E" class="headerlink" title="sub_401E0E"></a><code>sub_401E0E</code></h3><p>Now this function calls a couple of hashed Windows API functions.</p>
+<img src="/2025/12/15/lament_of_the_seraph/3.png" class="">
+<p><code>sub_4019B1</code> parses the PE Header of the loaded DLL, walks the Export Directory, hashes every function name it finds using <code>sub_4014E0</code>, and compares it to the requested hash.</p>
+<img src="/2025/12/15/lament_of_the_seraph/4.png" class="">
+<p>So now we need to look at the hashing algorithm.</p>
+<h3 id="sub-4014E0"><a href="#sub-4014E0" class="headerlink" title="sub_4014E0"></a><code>sub_4014E0</code></h3><p>The hashing algorithm is a modified version of <code>Salsa20</code>. The initial state is a 4x4 matrix that’s filled with the length of the string passed to the function. It then XORs the string with the string length. Then it uses custom “Nothing-Up-My-Sleeve” constants - “SRPH”, “LNCE”, “NITE” and “2025” instead of the standard “expa”, “nd 3”, “2-by”, and “te k”.</p>
+<p>For example, the initial state for <code>VirtualAlloc</code> will look something like this:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"><strong>Col 0</strong></th>
+<th style="text-align:center"><strong>Col 1</strong></th>
+<th style="text-align:center"><strong>Col 2</strong></th>
+<th style="text-align:center"><strong>Col 3</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>Row 0</strong></td>
+<td style="text-align:center"><code>Len</code> ^ “Virt” ^ “SRPH”</td>
+<td style="text-align:center"><code>Len</code> ^ “ualA”</td>
+<td style="text-align:center"><code>Len</code> ^ “lloc”</td>
+<td style="text-align:center"><code>Len</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Row 1</strong></td>
+<td style="text-align:center"><code>Len</code></td>
+<td style="text-align:center"><code>Len</code> ^ “LNCE”</td>
+<td style="text-align:center"><code>Len</code></td>
+<td style="text-align:center"><code>Len</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Row 2</strong></td>
+<td style="text-align:center"><code>Len</code></td>
+<td style="text-align:center"><code>Len</code></td>
+<td style="text-align:center"><code>Len</code> ^ “NITE”</td>
+<td style="text-align:center"><code>Len</code></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>Row 3</strong></td>
+<td style="text-align:center"><code>Len</code></td>
+<td style="text-align:center"><code>Len</code></td>
+<td style="text-align:center"><code>Len</code></td>
+<td style="text-align:center"><code>Len</code> ^ “2025”</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The algorithm then runs 4 Double-Rounds. Each Double-Round consists of a Column Round followed by a Row Round. Every transformation mixes four words using ARX. Usually, Salsa20 rotates by 7, 9, 13, 18. This variant rotates by 5, 11, 17, 23.</p>
+<p>The algorithm adds the mixed 16-word state back to the original one to break linearity (feed-forward). Then it collapses the 512-bit state by XORing all 16 words together. The final 32-bit XOR result is returned as the hash.</p>
+<p>Now a <a href="resolver.py">python script</a> can be written to resolve the functions with the hashes provided.</p>
+<h3 id="sub-401E0E-continued"><a href="#sub-401E0E-continued" class="headerlink" title="sub_401E0E (continued)"></a><code>sub_401E0E</code> (continued)</h3><p>After resolving the hashes, the function looks something like this:</p>
+<img src="/2025/12/15/lament_of_the_seraph/5.png" class="">
+<p>It is now pretty easy to identify what this function is doing - it calls the Windows API function <code>IsWow64Process</code> via <code>kernel32.dll</code>, this function simply checks if the given process (via <code>GetCurrentProcess</code>) is running under <code>Windows-on-Windows-64-bit</code>.</p>
+<h3 id="What-is-WOW64"><a href="#What-is-WOW64" class="headerlink" title="What is WOW64?"></a>What is WOW64?</h3><p> It is a subsystem in 64-bit versions of Windows that allows 32-bit applications to run seamlessly on a 64-bit operating system. This feature is included by default in most 64-bit Windows operating systems.</p>
+<p>At this point, you might have guessed what this challenge is about. The binary given tries to execute arbitrary 64-bit code from the given 32-bit PE file. How does it do that? We will look at this later. For now let’s move on to the other functions.</p>
+<h3 id="Next-up-sub-416E80"><a href="#Next-up-sub-416E80" class="headerlink" title="Next up - sub_416E80"></a>Next up - <code>sub_416E80</code></h3><img src="/2025/12/15/lament_of_the_seraph/6.png" class="">
+<p>This function simply registers a vectored exception handler named <code>Handler</code>. Basically, it prepares memory and an exception hook for later use.</p>
+<p>Going back to main, we see <code>dword_40E044</code> which is referenced via <code>Handler</code></p>
+<img src="/2025/12/15/lament_of_the_seraph/7.png" class="">
+<h3 id="Next-up-Handler"><a href="#Next-up-Handler" class="headerlink" title="Next up - Handler"></a>Next up - <code>Handler</code></h3><p>This function is a Vectored Exception Handler (VEH). It intercepts application crashes to hijack the CPU’s execution path. In this big function, only one part is of interest to us.</p>
+<img src="/2025/12/15/lament_of_the_seraph/8.png" class="">
+<p>This block handles memory access errors. The ransomware intentionally crashes at specific valid pointers to trigger this block. This is a control-flow obfuscation technique to hide the call to the malicious payload (<code>sub_40286D</code>).</p>
+<p>If the Exception Address happens to be <code>dword_40E044</code> then <code>sub_40286D</code> gets called. Here <code>sub_40286D</code> is the actual malicious stuff the binary tries to do.</p>
+<h3 id="Next-up-sub-40286D"><a href="#Next-up-sub-40286D" class="headerlink" title="Next up - sub_40286D"></a>Next up - <code>sub_40286D</code></h3><p>We can see that this function calls two functions of interest - <code>sub_401FD1</code> and <code>sub_401E9D</code>.</p>
+<img src="/2025/12/15/lament_of_the_seraph/9.png" class="">
+<h3 id="sub-401FD1"><a href="#sub-401FD1" class="headerlink" title="sub_401FD1"></a><code>sub_401FD1</code></h3><p>The function will look something like this after resolving the hashes:</p>
+<img src="/2025/12/15/lament_of_the_seraph/10.png" class="">
+<p>Here <code>sub_401C19</code> gets the <code>USERPROFILE</code> path via PEB walking, which then builds the path to <code>\\AppData\\Roaming\\Electrum\\recent_servers</code>. The function then parses this file and looks for a string between double quotes whose md5 hash matches <code>5fc44255053d10f73c65104fa689843f</code>.</p>
+<p>Now, it is impossible to get the string from the md5 hash alone, this is where the description comes in which hints at a <code>public server</code>. The intent behind this part is for the player to research on well known public <code>Electrum</code> servers and <code>Electrum</code> as a whole. The required string is <code>electrum.blockstream.info</code> which can be found in <a target="_blank" rel="noopener" href="https://github.com/spesmilo/electrum/blob/0eefcbae9cb19ff9ece8cd07dc97f8835b690b83/electrum/chains/mainnet/servers.json">https://github.com/spesmilo/electrum/blob/0eefcbae9cb19ff9ece8cd07dc97f8835b690b83/electrum/chains/mainnet/servers.json</a> or <a target="_blank" rel="noopener" href="https://1209k.com/bitcoin-eye/ele.php">https://1209k.com/bitcoin-eye/ele.php</a></p>
+<p>Upon passing the md5 check, the string is returned via <code>Destination</code>.</p>
+<h3 id="Next-up-sub-401E9D"><a href="#Next-up-sub-401E9D" class="headerlink" title="Next up - sub_401E9D"></a>Next up - <code>sub_401E9D</code></h3><p>The string stored in <code>Destination</code> is now passed to this function. We additionally see that <code>VirtualProtect</code> is used in this function, now we can make an educated guess that some shellcode is being executed in this function.</p>
+<img src="/2025/12/15/lament_of_the_seraph/11.png" class="">
+<p>Our shellcode is stored at <code>unk_40A020</code>.</p>
+<img src="/2025/12/15/lament_of_the_seraph/12.png" class="">
+<p>Before we analyse our shellcode, lets quickly look at <code>sub_402531</code>.</p>
+<h3 id="sub-402531"><a href="#sub-402531" class="headerlink" title="sub_402531"></a><code>sub_402531</code></h3><p>This function gets files under <code>\\AppData\\Roaming\\Electrum\\wallets</code> and AES-256-CBC encrypts them using <code>openssl</code>. The encrypted file is then saved with the <code>.seraph</code> extension. The IV is hardcoded so  finding the key should be our next logical step. The function takes in the hex of the key and the key is the string returned by <code>sub_401E9D</code> so we can make an educated guess that our shellcode returns the key after some transformations.</p>
+<h2 id="Shellcode-Analysis"><a href="#Shellcode-Analysis" class="headerlink" title="Shellcode Analysis"></a>Shellcode Analysis</h2><p>Lets look at the disassembly of the shellcode stored in <code>unk_40A020</code>,</p>
+<img src="/2025/12/15/lament_of_the_seraph/13.png" class="">
+<p>Interesting, a <code>retf</code> instruction. This part of the challenge requires further research by the player on the <code>retf</code> or <code>far return</code> instruction and the <code>cs</code> (code segment) register.</p>
+<p>When executing a <code>far return</code> (<code>retf</code>), the processor pops the return instruction pointer (IP) from the top of the stack into the <code>ip</code> register, and then pops the segment selector (CS) from the top of the stack into the <code>cs</code> register, effecting the mode switch.</p>
+<p>From our disassembly, we can see that the <code>cs</code> register holds the value <code>0x33</code> (after the arithmetic operations).</p>
+<h3 id="The-Code-Segment-Register"><a href="#The-Code-Segment-Register" class="headerlink" title="The Code Segment Register"></a>The Code Segment Register</h3><p>In x86 architecture, the CS register holds the segment selector for the code segment. It can have two values - <code>0x23</code> signifying <code>x86</code> instructions, and <code>0x33</code> signifying <code>x64</code> instructions. This challenge utilizes this property of the <code>cs</code> register to execute arbitrary <code>64-bit</code> code in the given <code>32-bit</code> executable. This technique is known as the <strong><code>Heaven&#39;s Gate</code></strong> technique.</p>
+<h2 id="Shellcode-Analysis-Continued"><a href="#Shellcode-Analysis-Continued" class="headerlink" title="Shellcode Analysis (Continued)"></a>Shellcode Analysis (Continued)</h2><p>Now lets look at the hex view of the shellcode:</p>
+<img src="/2025/12/15/lament_of_the_seraph/14.png" class="">
+<p>Here we see two <code>CB</code> or <code>retf</code> instructions. Lets look at the second <code>far return</code> now,</p>
+<img src="/2025/12/15/lament_of_the_seraph/15.png" class="">
+<p>Well, now the value of the <code>cs</code> register is <code>0x23</code>, as expected the context now switches from <code>64bit</code> to <code>32bit</code>, which means the code between the two <code>far return</code>s is 64bit instructions embedded in a 32bit executable.</p>
+<p>To summarize, there is 64-bit code getting executed in the given 32-bit executable. This technique, although pretty simple, evades the eyes of multiple antiviruses and is a malicious technique.</p>
+<p>So now how to go ahead? The simplest way is to extract the shellcode, save it in another file and open it in 64-bit mode.</p>
+<h2 id="64bit-Analysis"><a href="#64bit-Analysis" class="headerlink" title="64bit Analysis"></a>64bit Analysis</h2><p>To analyse the shellcode, we need to save it in a different file and open it in 64 bit mode in IDA.</p>
+<p>In the shellcode, we see the function prologue after 32 bytes, and it also so happens that the AES key required is of 32 bytes size. here is the disassembly after the 32 bytes:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs asm">seg000:0000000000000020                 push    rbx<br>seg000:0000000000000021                 push    rsi<br>seg000:0000000000000022                 push    rdi<br>seg000:0000000000000023                 mov     r8, 0AAAAAAAAAAAAAAAAh<br>seg000:000000000000002D                 mov     rcx, 19h<br>seg000:0000000000000034                 mov     r9, 0BBBBBBBBBBBBBBBBh<br>seg000:000000000000003E                 mov     rdi, 20h ; &#x27; &#x27;<br>seg000:0000000000000045                 mov     r10, 0CCCCCCCCCCCCCCCCh<br>seg000:000000000000004F                 xor     rbx, rbx<br>seg000:0000000000000052<br>seg000:0000000000000052 loc_52:                                 ; CODE XREF: seg000:0000000000000075↓j<br>seg000:0000000000000052                 cmp     rbx, rdi<br>seg000:0000000000000055                 jnb     short loc_77<br>seg000:0000000000000057                 mov     al, [r9+rbx]<br>seg000:000000000000005B                 mov     rax, rbx<br>seg000:000000000000005E                 xor     rdx, rdx<br>seg000:0000000000000061                 div     rcx<br>seg000:0000000000000064                 mov     dl, [r8+rdx]<br>seg000:0000000000000068                 mov     al, [r9+rbx]<br>seg000:000000000000006C                 xor     al, dl<br>seg000:000000000000006E                 mov     [r10+rbx], al<br>seg000:0000000000000072                 inc     rbx<br>seg000:0000000000000075                 jmp     short loc_52<br>seg000:0000000000000077 ; ---------------------------------------------------------------------------<br>seg000:0000000000000077<br>seg000:0000000000000077 loc_77:                                 ; CODE XREF: seg000:0000000000000055↑j<br>seg000:0000000000000077                 pop     rdi<br>seg000:0000000000000078                 pop     rsi<br>seg000:0000000000000079                 pop     rbx<br>seg000:000000000000007A                 push    2<br>seg000:000000000000007C                 pop     rax<br>seg000:000000000000007D                 shl     eax, 4<br>seg000:0000000000000080                 add     al, 3<br>seg000:0000000000000082                 push    rax<br>seg000:0000000000000083                 push    0<br>seg000:0000000000000088                 retfq<br></code></pre></td></tr></table></figure>
+<p>Following is the annotated shellcode for better clarity:<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs asm">mov r8, 0xAAAAAAAAAAAAAAAAh   ; xor_key pointer<br>mov rcx, 19h                  ; key_len<br>mov r9, 0xBBBBBBBBBBBBBBBBh   ; encrypted_data pointer<br>mov rdi, 20h                  ; encrypted_data size (32 bytes)<br>mov r10, 0xCCCCCCCCCCCCCCCCh  ; output buffer pointer<br>xor rbx, rbx                  ; counter = 0<br></code></pre></td></tr></table></figure><br>Addresses like <code>0xAAAAAAAAAAAAAAAA</code> get patched at runtime, hence placeholder text in its hex view.</p>
+<p>After this there is the main transformation of the encrypted data:<br><figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs asm">xor_loop:<br>    cmp rbx, rdi              ; if (counter &gt;= 32)<br>    jnb done<br><br>    mov al, [r9+rbx]          ; encrypted_byte = encrypted_data[counter]<br>    mov rax, rbx<br>    xor rdx, rdx<br>    div rcx                   ; rax = counter / key_len, rdx = counter % key_len<br><br>    mov dl, [r8+rdx]          ; key_byte = xor_key[counter % key_len]<br>    mov al, [r9+rbx]<br>    xor al, dl                ; decrypted = encrypted ^ key_byte<br>    mov [r10+rbx], al         ; output[counter] = decrypted<br><br>    inc rbx                   ; counter++<br>    jmp xor_loop<br><br></code></pre></td></tr></table></figure></p>
+<p>after which the registers get popped and the cs register gets modified to return back to 32 bit mode:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><code class="hljs asm">done:<br>    pop rdi                   ; Restore saved registers<br>    pop rsi<br>    pop rbx<br><br>    push 2<br>    pop rax<br>    shl eax, 4<br>    add al, 3<br>    push rax<br>    push 0<br>    retfq                     ; far return to switch back to 32 bit mode<br></code></pre></td></tr></table></figure>
+<p>Right, so the algorithm is our classic repeating-key XOR cipher. Below is a comparison between the disassemblies in 32-bit and 64-bit mode respectively:</p>
+<img src="/2025/12/15/lament_of_the_seraph/16.png" class="">
+<p>Now, we know the xor key and the encrypted bytes, that’s the only two things required to get the flag:</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><code class="hljs python">data = <span class="hljs-built_in">bytes</span>.fromhex(<span class="hljs-string">&quot;0B 05 11 06 0F 31 27 34 7E 36 5C 2D 31 5B 20 1A 46 2B 26 5E 62 3A 5A 12 3B 2D 5F 02 57 00 41 08&quot;</span>)<br>key = <span class="hljs-string">&quot;electrum.blockstream.info&quot;</span><br>result = <span class="hljs-built_in">bytes</span>([data[i] ^ <span class="hljs-built_in">ord</span>(key[i % <span class="hljs-built_in">len</span>(key)]) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(data))])<br><span class="hljs-built_in">print</span>(result.decode())<br><span class="hljs-comment"># nite&#123;CRYPT0BR0Sn4NG3LS4tTH3g4t3&#125;</span><br></code></pre></td></tr></table></figure>
+
+            </article>
+            
+	<aside class="rightside">
+	
+		<div class="rightside-button not-toc-button" id="js-aside">
+			<span>
+				<img no-lazy src="/images/icon/aside.png" class="rightside-button-icon" alt="Icon">
+			</span>
+		</div>
+		<script>
+			$("#js-aside").click(function () {
+				onShowAsideButton();
+			});
+		</script>
+	
+	
+<script src="/js/plugins/goto_position.js"></script>
+
+	
+	<div class="rightside-button" id="js-go_top">
+		<span>
+			<img no-lazy src="/images/icon/go_top.png" class="rightside-button-icon" alt="Icon">
+		</span>
+	</div>
+	<div class="rightside-button" id="js-go_bottom">
+		<span>
+			<img no-lazy src="/images/icon/go_bottom.png" class="rightside-button-icon" alt="Icon">
+		</span>
+	</div>
+
+	<script>
+		$('#js-go_top')
+		.gotoPosition( {
+			speed: 300,
+			target: 'top',
+		} );
+		$('#js-go_bottom')
+		.gotoPosition( {
+			speed: 300,
+			target: 'bottom',
+		} );
+	</script>
+</aside>
+
+
+
+<div class="post-bottom">
+    
+        <div class="post-paging">     
+            <div class="post-paging-last">
+                
+                    <a href="/2025/12/15/ophelias_truth/">
+                        <- niteCTF 2025 - Ophelia's Truth
+                    </a>
+                
+            </div>
+            <div class="post-paging-next">
+                
+            </div>
+        </div>
+    
+    
+    
+</div>
+
+        </div>
+    </main>
+    
+        <aside class="main-aside">
+    
+<script src="/js/widgets/aside.js"></script>
+
+    <script>
+        showAside();
+    </script>
+
+    <div class="aside-top">
+        <div class="aside-top-about aside-card">
+            <a href="/about" class="aside-top-about-portrait">
+                <img no-lazy src="/about/avatar.png" alt="Q">
+            </a>
+            <div class="aside-top-about-info">
+                <span class="author"> Indrath</span>
+                <span class="description">DFIR n RE</span>
+            </div>              
+            <div class="aside-top-about-site">
+                <a href="" class="aside-top-about-site-item">
+                    <span class="title"></span>
+                </a>
+                <a href="" class="aside-top-about-site-item">
+                    <span class="title"></span>
+                </a>
+            </div>
+            <div class="aside-top-about-contact">
+                
+                    
+                        <a target="_blank" rel="noopener" href="https://github.com/devarjya27">
+                            <img no-lazy src="/images/bottom_icon/github.webp" alt="Quieter">
+                        </a>
+                    
+                        <a target="_blank" rel="noopener" href="https://www.instagram.com/devarjya27/">
+                            <img no-lazy src="/images/bottom_icon/instagram.svg" alt="Quieter">
+                        </a>
+                    
+                        <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/devarjya-purkayastha/">
+                            <img no-lazy src="/images/bottom_icon/linkedin.svg" alt="Quieter">
+                        </a>
+                    
+                        <a target="_blank" rel="noopener" href="https://x.com/dv_xrt_jyx27">
+                            <img no-lazy src="/images/bottom_icon/rss.png" alt="Quieter">
+                        </a>
+                    
+                
+            </div>
+        </div> 
+
+        
+    </div>
+
+    <div class="aside-bottom">
+        
+    </div>
+</aside>
+
+    
+</div>
+		<footer>
+	<div class="content">
+		
+			<span>©2026&nbsp;By&nbsp;<a href="/about">Indrath</a>.</span>
+		
+		<span><a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> theme by <a target="_blank" rel="noopener" href="https://github.com/GZ-Metal-Cell/hexo-theme-quieter">Quieter</a>.</span>
+		
+	</div>
+
+	
+<script src="/js/plugins/ref.js"></script>
+
+	
+<script src="/js/plugins/highlight_tools.js"></script>
+
+	<script>
+		var copyIcon = "/images/icon/copy.png";
+		var closeCodeBlockIcon = "/images/icon/close_code_block.png";
+		var highlightShrink = "";
+		var HighlightHeightLimit = "";
+	</script>
+	
+	<!-- Analytics -->
+
+    
+        <!-- Busuanzi Analytics -->
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+
+
+	
+
+	
+
+    
+		
+<script src="/js/plugins/replaceSpacesWithNbsp.js"></script>
+
+	
+
+	
+	
+	
+		<script>
+			if (typeof init === 'function') {
+				init();
+			}
+		</script>
+	
+
+	
+		
+	
+
+	
+
+	<!--
+		
+<script src="/js/plugins/jquery.pjax.min.js"></script>
+
+		<script>
+			$(document).pjax('a[target!=_blank]', 'main', {
+				fragment: 'main',
+				timeout: 8000
+			});
+
+			$(document).on('pjax:complete', function() {
+			});
+		</script> 
+	-->
+	<script> 
+	        console.log('\n %c Hexo-Quieter Theme %c https://github.com/GZ-Metal-Cell/hexo-theme-quieter \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
+	    </script></footer>
+	</body>
+
+	<!-- Hexo-Quieter 主题  https://github.com/GZ-Metal-Cell/hexo-theme-quieter -->
+</html>

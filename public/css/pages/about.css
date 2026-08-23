@@ -1,0 +1,30 @@
+main.about .header-background-content h1 {
+  font-family: var(--font-title) !important;
+}
+main.about .about-content-info {
+  font-family: var(--font-body) !important;
+}
+main.about .about-content-info p,
+main.about .about-content-info li,
+main.about .about-content-info a,
+main.about .about-content-info center,
+main.about .about-content-info blockquote,
+main.about .about-content-info span,
+main.about .about-content-info div,
+main.about .about-content-info strong,
+main.about .about-content-info em {
+  font-family: var(--font-body) !important;
+}
+main.about .about-content-info h1,
+main.about .about-content-info h2,
+main.about .about-content-info h3,
+main.about .about-content-info h4,
+main.about .about-content-info h5,
+main.about .about-content-info h6 {
+  font-family: var(--font-title) !important;
+}
+main.about .about-content-info code,
+main.about .about-content-info pre,
+main.about .about-content-info pre span {
+  font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace !important;
+}

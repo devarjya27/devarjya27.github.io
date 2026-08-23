@@ -1,0 +1,18 @@
+[data-theme='dark'] {
+    --global-bg: #0d0d0d;
+    --text-primary: #ddd;
+    --text-secondary: #aaa;
+    --text-link: #F85A4E;
+    --background-primary: #141414;
+    --background-secondary: rgba(0, 0, 0, 0.95);
+    --background-tertiary: rgba(0, 0, 0, 0.95);
+    --blockquote-bg: transparent;
+    --border: #2c2c2c;
+    --code-bg: #2c2c2c;
+    --highlight-tools-bg: #1a1a1a;
+    --highlight-tools-text: #cdcdcd;
+    --tabs-bg: #2c2c2c;
+    --gallery-content-description-bg: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+    --font-title: 'Caesar Dressing', cursive;
+    --font-body: 'Alegreya Sans', Georgia, serif;
+}

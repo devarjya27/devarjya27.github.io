@@ -124,7 +124,7 @@ bottom_icon:
           # 描述名称
           name: "Instagram",
           # 图标
-          icon: "/images/bottom_icon/X.svg",
+          icon: "/images/bottom_icon/instagram.svg",
           # 跳转链接
           link: "https://www.instagram.com/devarjya27/",
       }
@@ -140,7 +140,7 @@ bottom_icon:
           # 描述名称
           name: "X",
           # 图标
-          icon: "/images/bottom_icon/rss.png",
+          icon: "/images/bottom_icon/X.svg",
           # 跳转链接
           link: "https://x.com/dv_xrt_jyx27",
       }
