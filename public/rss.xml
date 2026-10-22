@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Indrath</title>
+    <title>Indrath | Student Portfolio</title>
     <link>https://indrath.github.io/</link>
+    <description>Student portfolio and technical notes from Devarjya Purkayastha.</description>
     <language>en</language>
     <copyright>All rights reserved 2026, Indrath</copyright>
     <lastBuildDate>Sun, 23 Aug 2026 19:56:14 GMT</lastBuildDate>
     <generator>Hexo</generator>
     <image>
       <url>https://indrath.github.io/images/icon/logo.webp</url>
-      <title>Indrath</title>
+      <title>Indrath | Student Portfolio</title>
       <link>https://indrath.github.io/</link>
     </image>
     <atom:link href="https://indrath.github.io/rss.xml" rel="self" type="application/rss+xml"/>

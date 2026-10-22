@@ -11,7 +11,7 @@ function initKatex() {
     function isDisplayMath(tex) {
         // Block environments
         if (/\\begin\{(bmatrix|pmatrix|matrix|vmatrix|Bmatrix|cases|align|equation|gather|multline|array)/.test(tex)) return true;
-        // Summation, integration, products — always block in practice
+        // Summation, integration, products: always block in practice
         if (/\\(sum|int|prod|bigcup|bigcap)/.test(tex)) return true;
         // Multiline or long expressions
         if (tex.indexOf('\n') !== -1) return true;
@@ -47,7 +47,7 @@ function initKatex() {
             el.parentNode.replaceChild(wrapper, el);
         });
 
-        // 2. Inline tags — but promote to display if they contain block environments or are long
+        // 2. Inline tags, promoted to display if they contain block environments or are long
         document.querySelectorAll('script[type="math/tex"]').forEach(function(el) {
             var tex = unescape(el.textContent || el.innerText);
             var display = isDisplayMath(tex);

@@ -5,18 +5,18 @@
 
 	<head>
 		
-<title>Archives | Blogsite</title>
+<title>Field Notes | Portfolio</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="shortcut icon" type="image/x-icon" href="/images/headers_icon/logo.webp">
+<link rel="icon" href="/images/favicon-avatar.png">
 <link href="/css/plugins/print.css" media="print" rel="stylesheet" />
 
 <link rel="stylesheet" href="/css/index.css">
 
 
     <meta name="keywords" content="CTF, blog, DFIR, RE, Malware">
-    <meta name="description" content="random writeups">
+    <meta name="description" content="Student portfolio and technical notes from Devarjya Purkayastha.">
 
 
 
@@ -46,221 +46,48 @@
 
     
 
+
 	<!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
-<!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/rss.xml" title="Indrath" type="application/rss+xml">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 8.1.1"><link rel="alternate" href="/rss.xml" title="Indrath | Student Portfolio" type="application/rss+xml">
 </head>
 
 	<body>
 		
-    <header class="sticky-header">
-	<nav>
-		<div class="nav-left">
-			<a href="/" class="logo">
-				<img no-lazy src="/images/headers_icon/logo.webp" alt="Quieter">
-			</a>
-			<ul class="breadcrumb" id="breadcrumb"></ul>
-		</div>
-		<div class="nav-right">
-			<ul>
-				
-					<li>
-						<a href="/">
-						  Main
-						</a>
-					</li>
-				
-					<li>
-						<a href="/archives">
-						  Archives
-						</a>
-					</li>
-				
-					<li>
-						<a href="/about">
-						  About me
-						</a>
-					</li>
-								  
-			</ul>
-		</div>
-		<div class="nav-right-close">
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-				<path fill="none" d="M0 0h24v24H0z" />
-				<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
-			</svg>
-		</div>
-
-		<div class="sidebar">
-    <div class="topo">
-        <p>Blogsite</p>
-    </div>
-    <ul>
-        
-        <li>
-            <a href="/">
-                Main
-            </a>
-        </li>
-        
-        <li>
-            <a href="/archives">
-                Archives
-            </a>
-        </li>
-        
-        <li>
-            <a href="/about">
-                About me
-            </a>
-        </li>
-        
-    </ul>
-    <div class="sidebar-footer">
-        
-        <a target="_blank" rel="noopener" href="https://github.com/devarjya27">
-            <img no-lazy src="/images/bottom_icon/github.webp" alt="Quieter">
-        </a>
-        
-        <a target="_blank" rel="noopener" href="https://www.instagram.com/devarjya27/">
-            <img no-lazy src="/images/bottom_icon/instagram.svg" alt="Quieter">
-        </a>
-        
-        <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/devarjya-purkayastha/">
-            <img no-lazy src="/images/bottom_icon/linkedin.svg" alt="Quieter">
-        </a>
-        
-        <a target="_blank" rel="noopener" href="https://x.com/dv_xrt_jyx27">
-            <img no-lazy src="/images/bottom_icon/X.svg" alt="Quieter">
-        </a>
-        
-    </div>
-</div>
-<div class='shelter'>
-    <script>
-        $(function() {
-            $('.nav-right-close > svg').click(function() {
-                $('.sidebar').animate({
-                    right: "0"
-                }, 500);
-                $('.shelter').fadeIn("slow");
-            
-                var element = $('.topo');
-                element.addClass('custom-style');
-            
-                var links = null;
-                if ("") {
-                    links = "".split(',');
-                } else {
-                    links = "/images/hades/Wallpaper_Zagreus01.jpg,/images/hades/Wallpaper_Tartarus.jpg,/images/hades/Wallpaper_Thanatos.png,/images/hades/Wallpaper_Hermes.png,/images/hades/4K_OpeningChamber.jpg,/images/hades/4K_Hades_HouseOfHades.jpg".split(',');
-                }
-            
-                var randomLink = typeof pickWallpaper === 'function' ? pickWallpaper(links, 'quieter:sidebar-wallpaper') : links[Math.floor(Math.random() * links.length)];
-                element.css('background-image', "url('" + randomLink + "')");
-            });
-          
-            $('.shelter').click(function(e) {
-                $('.sidebar').animate({
-                    right: "-100%"
-                }, 500);
-                $('.shelter').fadeOut("slow");
-            });
-        });      
-    </script>
-</div>
-
-	</nav>
-
-	
-		<div class="header-background"></div>
-	
-
-	<script>
-		const name = 'archives';
-		const ul = document.querySelectorAll('.nav-right ul')[0];
-		const lis = ul.querySelectorAll('li');
-
-		if (name == 'home') {
-			lis[0].classList.add('select');
-		} else {
-			for (let i = 0; i < lis.length; i++) {
-				const li = lis[i];
-				const a = li.querySelector('a');
-				if (name === a.href.split('/')[3]) {
-					li.classList.add('select');
-				}
-			}
-		}
-	</script>
-	
-	<script>
-		var element = document.querySelector('.header-background');
-		if(element) {
-			element.classList.add('custom-style');
-			var links = null;
-			if (name === 'home' && "/images/hades/4K_OpeningChamber.jpg") {
-				links = ["/images/hades/4K_OpeningChamber.jpg"];
-			} else if("")
-			{
-				links = "".split(',');
-			} else
-			{
-				links = "/images/hades/Wallpaper_Zagreus01.jpg,/images/hades/Wallpaper_Tartarus.jpg,/images/hades/Wallpaper_Thanatos.png,/images/hades/Wallpaper_Hermes.png,/images/hades/4K_OpeningChamber.jpg,/images/hades/4K_Hades_HouseOfHades.jpg".split(',');
-			}
-			var randomLink = typeof pickWallpaper === 'function' ? pickWallpaper(links, 'quieter:header-wallpaper') : links[Math.floor(Math.random() * links.length)];
-			element.style.backgroundImage = "url('" + randomLink + "')";
-		}
-	</script>
-
-	
-<script src="/js/plugins/breadcrumb.js"></script>
-
-	<script>
-		var menus_title = [];
-		
-			menus_title.push({home: 'Main'});
-		
-			menus_title.push({archives: 'Archives'});
-		
-			menus_title.push({about: 'About me'});
-		
-		
-			customBreadcrumb(document.getElementById('breadcrumb'), menus_title);
-		
-	</script>
+    <button class="nav-reveal-zone" type="button" aria-label="Show navigation" aria-controls="site-navigation" aria-expanded="false"></button>
+<header class="nier-nav" id="site-navigation">
+	<div class="nier-pattern" aria-hidden="true"><div class="nier-pattern-inner"></div></div>
+	<div class="nier-nav-inner">
+		<a href="/#home" class="nier-wordmark"><span>DEVARJYA</span><small>aka Indrath // personal archive</small></a>
+		<nav aria-label="Primary navigation">
+			<a class="" data-section="home" href="/#home">Home</a>
+			<a data-section="projects" href="/#projects">Projects</a>
+			<a class="active" data-section="blog" href="/archives/">Blog</a>
+			<a class="" data-section="about" href="/#about">About</a>
+			<a data-section="contact" href="/#contact">Contact</a>
+		</nav>
+	</div>
 </header>
+<canvas class="ascii-background" id="ascii-background" aria-hidden="true"></canvas>
+<canvas id="ascii-sampler" hidden></canvas>
+
+<script src="/js/plugins/navReveal.js"></script>
+
+
+<script src="/js/plugins/asciiBackground.js"></script>
 
 
 
-<div class="main-wrapper">
-    <main class="archive">
+
+<main class="nier-page archive">
+    <header class="nier-page-heading"><p>field records / archive</p><h1>Field notes</h1><span aria-hidden="true">◆</span></header>
         
             
             
-            
-                <header class="main-header">
-	
-		
-			
-				
-			
-				
-					<div class="header-background-content">
-						<h1>Published 2 posts in 2025.</h1>
-					</div>
-				
-			
-				
-			
-		
-	
-</header>
-
-            
         
-        <div class="article-container archive-content">
+        <div class="nier-article archive-content">
             <article class="archive-content-info">
                 
                 <div class="grouping">
@@ -294,145 +121,8 @@
     
 </div>
             </article>
-            
-	<aside class="rightside">
-	
-		<div class="rightside-button not-toc-button" id="js-aside">
-			<span>
-				<img no-lazy src="/images/icon/aside.png" class="rightside-button-icon" alt="Icon">
-			</span>
-		</div>
-		<script>
-			$("#js-aside").click(function () {
-				onShowAsideButton();
-			});
-		</script>
-	
-	
-<script src="/js/plugins/goto_position.js"></script>
-
-	
-	<div class="rightside-button" id="js-go_top">
-		<span>
-			<img no-lazy src="/images/icon/go_top.png" class="rightside-button-icon" alt="Icon">
-		</span>
-	</div>
-	<div class="rightside-button" id="js-go_bottom">
-		<span>
-			<img no-lazy src="/images/icon/go_bottom.png" class="rightside-button-icon" alt="Icon">
-		</span>
-	</div>
-
-	<script>
-		$('#js-go_top')
-		.gotoPosition( {
-			speed: 300,
-			target: 'top',
-		} );
-		$('#js-go_bottom')
-		.gotoPosition( {
-			speed: 300,
-			target: 'bottom',
-		} );
-	</script>
-</aside>
-
-
-
-<div class="post-bottom">
-    
-    
-    
-        
-    
-</div>
-
         </div>
     </main>
-    
-        <aside class="main-aside">
-    
-<script src="/js/widgets/aside.js"></script>
-
-    <script>
-        showAside();
-    </script>
-
-    <div class="aside-top">
-        <div class="aside-top-about aside-card">
-            <a href="/about" class="aside-top-about-portrait">
-                <img no-lazy src="/about/avatar.png" alt="Q">
-            </a>
-            <div class="aside-top-about-info">
-                <span class="author"> Indrath</span>
-                <span class="description">DFIR n RE</span>
-            </div>              
-            <div class="aside-top-about-site">
-                <a href="" class="aside-top-about-site-item">
-                    <span class="title"></span>
-                </a>
-                <a href="" class="aside-top-about-site-item">
-                    <span class="title"></span>
-                </a>
-            </div>
-            <div class="aside-top-about-contact">
-                
-                    
-                        <a target="_blank" rel="noopener" href="https://github.com/devarjya27">
-                            <img no-lazy src="/images/bottom_icon/github.webp" alt="Quieter">
-                        </a>
-                    
-                        <a target="_blank" rel="noopener" href="https://www.instagram.com/devarjya27/">
-                            <img no-lazy src="/images/bottom_icon/instagram.svg" alt="Quieter">
-                        </a>
-                    
-                        <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/devarjya-purkayastha/">
-                            <img no-lazy src="/images/bottom_icon/linkedin.svg" alt="Quieter">
-                        </a>
-                    
-                        <a target="_blank" rel="noopener" href="https://x.com/dv_xrt_jyx27">
-                            <img no-lazy src="/images/bottom_icon/X.svg" alt="Quieter">
-                        </a>
-                    
-                
-            </div>
-        </div> 
-
-        
-    </div>
-
-    <div class="aside-bottom">
-        
-            <script>
-                
-                    const tocCollapsed = true;
-                
-                
-                    const tocDepth = 6;
-                
-                var headerString = '';
-                for (let i = 1; i <= tocDepth; i++) {
-                    if (i === 1) {
-                        headerString += 'h1';
-                    } else {
-                        headerString += ', h' + i;
-                    }
-                }
-                hbeToc();
-            </script>
-            <div class="aside-bottom-toc aside-card">
-                <div class="aside-bottom-toc-title">
-                    <h1>Completion</h1>
-                    <span class="toc-percentage"></span>
-                </div>
-                <ol class="aside-bottom-toc-content"></ol>
-            </div>
-        
-    </div>
-</aside>
-
-    
-</div>
 
 		<footer>
 	<div class="content">

@@ -3,10 +3,10 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Indrath
+title: Indrath | Student Portfolio
 subtitle: ''
-description: ''
-keywords:
+description: 'Student portfolio and technical notes from Devarjya Purkayastha.'
+keywords: digital forensics, DFIR, malware analysis, reverse engineering, CTF
 author: Indrath
 language: en
 timezone: ''

@@ -1,21 +1,21 @@
 # 网站主页标题
 title: Indrath
 # 网站标题后缀
-suffix: Blogsite
+suffix: Portfolio
 # 作者名称(会显示在首页文章下面)
 author: Indrath
 # 网站关键字
 keyword: CTF, blog, DFIR, RE, Malware
 # 网站描述
-web_description: random writeups
+web_description: Student portfolio and technical notes from Devarjya Purkayastha.
 # 网站语言
 lang: en-US
 # 网站建站时间
 since_year: 2026
 # 导航名称
 menus_title:
-    home: Main
-    archives: Archives
+    home: Portfolio
+    archives: Field Notes
     # galleries: /galleries
     # links: /links
     about: About me
@@ -31,14 +31,14 @@ menus_link:
 # 个人信息
 about: 
     author: Indrath
-    portrait: '/about/avatar.png'
+    portrait: ''
     description: 'DFIR n RE'
 
 # logo
 logo: /images/headers_icon/logo.webp
 # Icon
 icon:
-    favicon: /images/headers_icon/logo.webp # 网页标签上那个小图标 一定要用本地存储
+    favicon: /images/favicon-avatar.png
     locked: /images/icon/locked.png
     normal: /images/cards/8BitDeck39.png
     go_top: /images/icon/go_top.png
@@ -53,7 +53,7 @@ icon:
 headers:
     home:
         {
-            message: "some random posts",
+            message: "Portfolio & field notes",
             icon: "/images/hades/Wallpaper_Zagreus01.jpg",
         }
     archives:

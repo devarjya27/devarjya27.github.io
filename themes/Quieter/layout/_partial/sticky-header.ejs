@@ -1,91 +1,18 @@
-<header class="sticky-header">
-	<nav>
-		<div class="nav-left">
-			<a href="<%= theme.menus_link.home %>" class="logo">
-				<img no-lazy src="<%- theme.logo %>" alt="Quieter">
-			</a>
-			<ul class="breadcrumb" id="breadcrumb"></ul>
-		</div>
-		<div class="nav-right">
-			<ul>
-				<% for(const menu in theme.menus_link) { %>
-					<li>
-						<a href="<%= theme.menus_link[menu] %>">
-						  <%= theme.menus_title[menu] %>
-						</a>
-					</li>
-				<% } %>				  
-			</ul>
-		</div>
-		<div class="nav-right-close">
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-				<path fill="none" d="M0 0h24v24H0z" />
-				<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
-			</svg>
-		</div>
-
-		<%- partial('widgets/sidebar'); %>
-	</nav>
-
-	<% if(bg){ %>
-		<div class="header-background"></div>
-	<% } %>
-
-	<script>
-		const name = '<%- name %>';
-		const ul = document.querySelectorAll('.nav-right ul')[0];
-		const lis = ul.querySelectorAll('li');
-
-		if (name == 'home') {
-			lis[0].classList.add('select');
-		} else {
-			for (let i = 0; i < lis.length; i++) {
-				const li = lis[i];
-				const a = li.querySelector('a');
-				if (name === a.href.split('/')[3]) {
-					li.classList.add('select');
-				}
-			}
-		}
-	</script>
-	
-	<script>
-		var element = document.querySelector('.header-background');
-		if(element) {
-			element.classList.add('custom-style');
-			var links = null;
-			if (name === 'home' && "<%- theme.home_top_img %>") {
-				links = ["<%- theme.home_top_img %>"];
-			} else if("<%- page.top_img %>")
-			{
-				links = "<%- page.top_img %>".split(',');
-			} else
-			{
-				links = "<%- theme.random_top_img %>".split(',');
-			}
-			var randomLink = typeof pickWallpaper === 'function' ? pickWallpaper(links, 'quieter:header-wallpaper') : links[Math.floor(Math.random() * links.length)];
-			element.style.backgroundImage = "url('" + randomLink + "')";
-		}
-	</script>
-
-	<%- js('js/plugins/breadcrumb.js'); %>
-	<script>
-		var menus_title = [];
-		<% Object.keys(theme.menus_title).forEach(function(menu) { %>
-			menus_title.push({<%= menu %>: '<%= theme.menus_title[menu] %>'});
-		<% }); %>
-		<% if(page.categories){ %>
-			<% page.categories.data.map((cat)=>{ %>
-				postsBreadcrumb(
-					document.getElementById('breadcrumb'),
-					"<%- theme.menus_title.categories %>",
-					"<%- theme.menus_link.categories %>",
-					"<%- cat.name %>",
-					"<%- theme.menus_link.categories %>/<%- cat.name %>"
-				);
-			<% }) %>
-		<% } else { %>
-			customBreadcrumb(document.getElementById('breadcrumb'), menus_title);
-		<% } %>
-	</script>
+<button class="nav-reveal-zone" type="button" aria-label="Show navigation" aria-controls="site-navigation" aria-expanded="false"></button>
+<header class="nier-nav" id="site-navigation">
+	<div class="nier-pattern" aria-hidden="true"><div class="nier-pattern-inner"></div></div>
+	<div class="nier-nav-inner">
+		<a href="/#home" class="nier-wordmark"><span>DEVARJYA</span><small>aka Indrath // personal archive</small></a>
+		<nav aria-label="Primary navigation">
+			<a class="<%= name === 'home' ? 'active' : '' %>" data-section="home" href="/#home">Home</a>
+			<a data-section="projects" href="/#projects">Projects</a>
+			<a class="<%= name === 'archives' || name === 'post' ? 'active' : '' %>" data-section="blog" href="/archives/">Blog</a>
+			<a class="<%= name === 'about' ? 'active' : '' %>" data-section="about" href="/#about">About</a>
+			<a data-section="contact" href="/#contact">Contact</a>
+		</nav>
+	</div>
 </header>
+<canvas class="ascii-background" id="ascii-background" aria-hidden="true"></canvas>
+<canvas id="ascii-sampler" hidden></canvas>
+<%- js('js/plugins/navReveal.js'); %>
+<%- js('js/plugins/asciiBackground.js'); %>

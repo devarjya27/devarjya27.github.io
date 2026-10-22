@@ -1,0 +1,102 @@
+// Shared interface for the archive, profile, and field-note pages.
+// Inspired by NieR:Automata's utilitarian UI: paper, ink, rules, and quiet status text.
+html[data-theme='dark'] { color-scheme: light !important; }
+body {
+	background-color: #c8c2aa;
+	background-size: 4px 4px;
+	background-image: linear-gradient(90deg, transparent, transparent 3px, rgba(0, 0, 0, .07) 4px), linear-gradient(transparent, transparent 3px, rgba(0, 0, 0, .07) 4px);
+	box-shadow: inset 0 0 150px rgba(77, 73, 62, .38), inset 0 0 150px rgba(77, 73, 62, .22);
+	letter-spacing: .04rem;
+}
+*:focus-visible { outline: 2px solid #4d493e !important; outline-offset: 3px; }
+
+.ascii-background { position: fixed; inset: 0; z-index: 0; width: 100vw; height: 100vh; pointer-events: none; }
+.nav-reveal-zone { position: fixed; z-index: 19; top: 0; left: 0; width: 100%; height: 30px; padding: 0; border: 0; background: transparent; cursor: default; }
+
+.nier-pattern { width: 100%; border-top: 2px solid #4d493e; }
+.nier-pattern-inner {
+	height: 26px;
+	background-size: 50px 3px, 50px 1px, 50px 1px, 50px 1px, 50px 1px;
+	background-position: 0 0, 22px 5px, 22px 6px, 28px 13px, 28px 14px;
+	background-image:
+		linear-gradient(90deg, #4d493e, #4d493e 10px, transparent 10px),
+		linear-gradient(90deg, rgba(77,73,62,.4), rgba(77,73,62,.4) 1px, rgba(77,73,62,.9) 1px, rgba(77,73,62,.9) 4px, transparent 4px, transparent 12px, rgba(77,73,62,.4) 12px, rgba(77,73,62,.4) 13px, rgba(77,73,62,.9) 13px, rgba(77,73,62,.9) 16px, transparent 16px),
+		linear-gradient(90deg, rgba(77,73,62,.9), rgba(77,73,62,.9) 4px, transparent 4px, transparent 12px, #4d493e 12px, #4d493e 16px, transparent 16px),
+		linear-gradient(90deg, rgba(77,73,62,.4), rgba(77,73,62,.4) 1px, rgba(77,73,62,.9) 1px, rgba(77,73,62,.9) 4px, transparent 4px),
+		linear-gradient(90deg, #4d493e, #4d493e 4px, transparent 4px);
+	background-repeat: repeat-x;
+}
+
+.nier-nav {
+	position: fixed; z-index: 20; top: 0; left: 0; width: 100%; height: auto; padding: 0; font-family: monospace; background: rgba(200, 194, 170, .96); border-bottom: 1px solid #4d493e; box-shadow: 0 8px 22px rgba(77, 73, 62, 0); transform: translateY(calc(-100% + 5px)); transition: transform .24s ease, box-shadow .24s ease; will-change: transform;
+	&.is-visible, &:hover, &:focus-within { transform: translateY(0); box-shadow: 0 8px 22px rgba(77, 73, 62, .2); }
+	.nier-nav-inner { width: min(1180px, calc(100% - 64px)); min-height: 76px; margin: auto; display: flex; align-items: center; gap: 30px; }
+	.nier-wordmark { display: flex; flex-direction: column; margin-right: auto; color: #4d493e; text-decoration: none; white-space: nowrap; }
+	.nier-wordmark span { font-size: 16px; font-weight: 700; letter-spacing: .25em; text-shadow: 2px 2px 0 rgba(77, 73, 62, .22); }
+	.nier-wordmark small { margin-top: 4px; color: rgba(77, 73, 62, .68); font-size: 8px; letter-spacing: .09em; text-transform: uppercase; }
+	nav { position: static; display: flex; width: auto; height: auto; gap: 4px; background: transparent; border: 0; box-shadow: none; backdrop-filter: none; }
+	nav a { position: relative; isolation: isolate; min-width: 78px; height: auto; padding: 10px 11px; color: #4d493e; background: rgba(77, 73, 62, .12); text-align: center; text-decoration: none; font-size: 9px; letter-spacing: .09em; text-transform: uppercase; border: 1px solid transparent; border-left: 0; border-right: 0; transition: background .2s, color .2s; }
+	nav a::before { content: ""; position: absolute; z-index: -1; inset: 3px auto 3px 0; width: 0; background: #4d493e; transition: width .2s; }
+	nav a:hover, nav a.active { color: #c8c2aa; border-color: #4d493e; background: transparent; }
+	nav a:hover::before, nav a.active::before { width: 100%; }
+}
+
+.main-header, .header-background { display: none !important; }
+.main-wrapper { position: relative; z-index: 1; display: block; margin: 0; }
+.main-wrapper > main { display: block; }
+.main-wrapper .article-container { width: min(900px, calc(100% - 56px)) !important; margin: 0 auto 80px; padding: 0; background: transparent; outline: 0; box-shadow: none; border-radius: 0; overflow: visible; }
+.main-wrapper .main-aside, .main-wrapper .article-aside { display: none; }
+
+.nier-page { min-height: 100vh; padding: 0 28px 85px; background: rgba(200, 194, 170, .76); color: var(--text-primary); }
+.nier-page-heading, .nier-article { width: min(900px, 100%); margin-left: auto; margin-right: auto; }
+.nier-page-heading { position: relative; padding: clamp(75px, 11vw, 125px) 0 55px; border-bottom: 2px solid var(--text-primary); }
+.nier-page-heading p { margin: 0 0 16px; color: var(--text-link); font: 10px monospace; letter-spacing: .12em; text-transform: uppercase; }
+.nier-page-heading h1 { margin: 0; max-width: 850px; color: var(--text-primary); font: 700 clamp(62px, 9vw, 108px)/.82 'League Gothic', 'Arial Narrow', sans-serif; letter-spacing: .045em; text-transform: uppercase; }
+.nier-page-heading > span { position: absolute; right: 0; bottom: 65px; color: var(--text-link); font-size: 14px; }
+.nier-post-heading h1 { font-size: clamp(40px, 6.1vw, 72px); line-height: .98; }
+.nier-post-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; color: var(--text-secondary); font: 10px monospace; letter-spacing: .09em; text-transform: uppercase; }
+.nier-post-meta span:nth-child(2) { color: var(--text-link); }
+.nier-article { padding: 55px 0 0; }
+
+.nier-page article { color: var(--text-primary); }
+.nier-page article h1, .nier-page article h2, .nier-page article h3, .nier-page article h4 { font-family: var(--font-title); color: var(--text-primary); letter-spacing: -.025em; }
+.nier-page article h1 { border-bottom: 1px solid var(--border); font-size: 31px; font-weight: 700; margin: 50px 0 22px; padding-bottom: 12px; }
+.nier-page article h2 { border-left: 0; border-bottom: 1px solid var(--border); font-size: 25px; margin: 44px 0 19px; padding: 0 0 10px; line-height: 1.2; }
+.nier-page article h3 { font-size: 21px; margin: 34px 0 13px; }
+.nier-page article p, .nier-page article li { color: var(--text-primary); font-family: var(--font-body); font-size: 17px; line-height: 1.75; }
+.nier-page article a { color: #4f583d; text-decoration: none; border-bottom: 1px solid currentColor; }
+.nier-page article a:hover { color: var(--text-primary); }
+.nier-page article blockquote { margin: 25px 0; padding: 14px 20px; border-left: 3px solid var(--text-link); background: rgba(104, 113, 83, .09); }
+.nier-page article blockquote p { color: var(--text-secondary); }
+.nier-page article code { color: #3e4731; background: #cfcaaf; border-radius: 0; padding: 2px 5px; font-family: monospace; font-size: .86em; }
+.nier-page article pre { margin: 22px 0; border: 1px solid var(--border); background: #c7c2a8; }
+.nier-page article pre code { background: transparent; color: var(--text-primary); }
+.nier-page article img { border: 1px solid var(--border); }
+
+.archive-content-info .local-search { margin-bottom: 45px; }
+.archive-content-info .local-search h1 { font: 700 23px var(--font-title); border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+.archive-content-info .input-container { border: 1px solid var(--border); background: transparent; border-radius: 0; }
+.archive-content-info .input-container .input { color: var(--text-primary); font-family: monospace; }
+.archive-content-info .grouping h1 { margin: 42px 0 15px; padding: 0 0 9px; border-bottom: 2px solid var(--text-primary); font: 700 31px var(--font-title); }
+.archive-content-info .grouping h2 { margin: 25px 0 0; font: 10px monospace; color: var(--text-link); letter-spacing: .1em; }
+.archive-content-info .grouping-item { display: flex; justify-content: space-between; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--border); text-decoration: none; font-size: 18px; color: var(--text-primary); transition: padding .2s, background .2s; }
+.archive-content-info .grouping-item:hover { padding-left: 13px; padding-right: 13px; background: rgba(104, 113, 83, .1); }
+.archive-content-info .grouping-item time { flex: 0 0 auto; color: var(--text-secondary); font: 10px monospace; padding-top: 6px; }
+
+footer .content { background: var(--global-bg); border-top: 1px solid var(--border); color: var(--text-secondary); font: 10px monospace; letter-spacing: .07em; text-transform: uppercase; }
+footer .content a { color: var(--text-secondary); }
+.rightside { display: none; }
+
+@media screen and (max-width: 660px) {
+	.nier-nav .nier-nav-inner { width: calc(100% - 40px); min-height: 68px; gap: 12px; align-items: flex-start; flex-direction: column; padding: 14px 0; }
+	.nier-nav nav { width: 100%; display: grid; grid-template-columns: repeat(5, 1fr); gap: 3px; }
+	.nier-nav nav a { min-width: 0; padding: 8px 2px; font-size: 8px; letter-spacing: .01em; }
+	.nier-page { padding: 0 20px 60px; }
+	.nier-page-heading { padding: 70px 0 38px; }
+	.nier-page-heading > span { bottom: 45px; }
+	.nier-article { padding-top: 38px; }
+	.nier-page article p, .nier-page article li { font-size: 16px; line-height: 1.68; }
+	.nier-page article h1 { font-size: 28px; }
+	.nier-page article h2 { font-size: 23px; }
+	.archive-content-info .grouping-item { font-size: 16px; }
+}

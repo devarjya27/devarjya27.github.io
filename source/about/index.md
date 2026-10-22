@@ -6,13 +6,37 @@ layout: "about"
 comments: false
 aside: true
 ---
-I am Devarjya aka Indrath, Forensics Head at [Team Cryptonite](https://cryptonitemit.in/). 
+I’m **Devarjya Purkayastha**, also known as Indrath. Currently pursuing a B.Tech. in Data Science and Engineering at Manipal Institute of Technology.
 
-Engineering Undergraduate who is fascinated by digital forensics and malware. 
+Forensics Head at [Team Cryptonite](https://cryptonitemit.in/), competing in CTFs and training junior members.
 
-I like drawing and geeking out over art history when I'm bored after spending hours on some DFIR chall or a random article about some new APT research.
+In my free time, I enjoy drawing and am an art history geek.
 
-(also a big Hades fan if it wasnt already evident)
+## Skills
 
-hmu if you wanna talk about dfir, manhwas or art
-Discord : devarjya27
+**Languages:** Python, Java, C, C++, and Go.
+
+**Core areas:** Digital forensics, malware analysis and development, systems programming, operating systems, computer networks, and reinforcement learning.
+
+## Experience
+
+### Forensics Head | Team Cryptonite
+
+January 2025 – Present
+
+- Learning while competing in CTFs and training junior members.
+
+### Research Intern | IIT Guwahati
+
+May 2026 – July 2026
+
+- Evaluated deep reinforcement learning methods for UAV trajectory, beamforming, and intelligent reflecting surface optimization.
+- Modelled secure wireless communication under jammer influence through reproducible experiments.
+
+## Education
+
+**B.Tech. in Data Science and Engineering**
+
+Manipal Institute of Technology, 2024–2028 · CGPA: 8.01/10
+
+[Download my résumé](/files/Devarjya_Purkayastha_Resume.pdf) or reach me at [devarjya.purkayastha@gmail.com](mailto:devarjya.purkayastha@gmail.com).

@@ -1,16 +1,5 @@
-<%- partial('_partial/sticky-header', {name: 'post', bg: true}); %>
-
-<div class="main-wrapper<%= page.aside != 'false' ? '' : ' close-aside' %>">
-    <main class="post">
-        <%- partial('_partial/main-header',{name: 'post'}); %>
-        <div class="post-content article-container">
-            <article class="post-content-info">
-                <%- page.content %>
-            </article>
-            <%- partial('widgets/bottom'); %>
-        </div>
-    </main>
-    <% if(page.aside != 'false') { %>
-        <%- partial('widgets/main-aside'); %>
-    <% } %>
-</div>
+<%- partial('_partial/sticky-header', {name: 'post'}); %>
+<main class="nier-page">
+	<header class="nier-page-heading nier-post-heading"><p>field note / <%- date(page.date, 'YYYY.MM.DD') %></p><h1><%- page.title %></h1><div class="nier-post-meta"><span>By <%- page.author || theme.author %></span><span>◆</span><span>analysis record</span></div></header>
+	<div class="nier-article post-content"><article class="post-content-info"><%- page.content %></article></div>
+</main>
