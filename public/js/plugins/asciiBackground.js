@@ -8,7 +8,7 @@ function initAsciiBackground() {
   if (!outputContext || !samplerContext) return;
 
   const characters = '@%#*+=-:. ';
-  const opacity = 0.32;
+  const opacity = 0.47;
   const fontSizeCss = 7;
   const state = { pointerX: 0, pointerY: 0 };
   const image = new Image();

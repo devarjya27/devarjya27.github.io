@@ -5,7 +5,7 @@ suffix: Portfolio
 # 作者名称(会显示在首页文章下面)
 author: Indrath
 # 网站关键字
-keyword: CTF, blog, DFIR, RE, Malware
+keyword: CTF, blog, systems, security, machine learning
 # 网站描述
 web_description: Student portfolio and technical notes from Devarjya Purkayastha.
 # 网站语言
@@ -32,7 +32,7 @@ menus_link:
 about: 
     author: Indrath
     portrait: ''
-    description: 'DFIR n RE'
+    description: 'Systems, security, and ML'
 
 # logo
 logo: /images/headers_icon/logo.webp

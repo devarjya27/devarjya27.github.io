@@ -10,7 +10,7 @@ I’m **Devarjya Purkayastha**, also known as Indrath. Currently pursuing a B.Te
 
 Forensics Head at [Team Cryptonite](https://cryptonitemit.in/), competing in CTFs and training junior members.
 
-In my free time, I enjoy drawing and am an art history geek.
+In my free time, I enjoy drawing and am an art history geek. Supporter of my boyhood club NEUFC and Bayern. Also like to play games and read manhwas.
 
 ## Skills
 
@@ -30,8 +30,7 @@ January 2025 – Present
 
 May 2026 – July 2026
 
-- Evaluated deep reinforcement learning methods for UAV trajectory, beamforming, and intelligent reflecting surface optimization.
-- Modelled secure wireless communication under jammer influence through reproducible experiments.
+- Evaluated deep reinforcement learning methods for UAV trajectory, beamforming, and RIS optimization for secure wireless communication under jammer influence.
 
 ## Education
 

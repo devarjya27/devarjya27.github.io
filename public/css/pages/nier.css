@@ -170,9 +170,11 @@ body {
   display: none;
 }
 .nier-page {
+  position: relative;
+  z-index: 1;
   min-height: 100vh;
   padding: 0 28px 85px;
-  background: rgba(200, 194, 170, 0.76);
+  background: rgba(200, 194, 170, 0.44);
   color: var(--text-primary);
 }
 .nier-page-heading,

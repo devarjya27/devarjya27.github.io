@@ -108,7 +108,7 @@
   border: 1px solid transparent;
   border-left: 0;
   border-right: 0;
-  background: rgba(77, 73, 62, 0.3);
+  background: rgba(77, 73, 62, 0.12);
   font: 600 11px monospace;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -133,8 +133,7 @@
   width: 100%;
 }
 .portfolio-shell .nier-button.secondary {
-  background: transparent;
-  border-color: rgba(77, 73, 62, 0.35);
+  background: rgba(77, 73, 62, 0.12);
 }
 .portfolio-shell .section-pattern {
   width: 100%;
